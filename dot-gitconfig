@@ -1,0 +1,70 @@
+[user]
+  name = Paul Dowman
+  email = paul@pauldowman.com
+	signingkey = 3EFA83902BF33818369F16A68454359FB0948235
+
+[github]
+  user = pauldowman
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  sh = auto
+  ui = true
+  wtf = auto
+[color "branch"]
+  current = green reverse
+  local = green
+  remote = yellow
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+# [color "status"]
+#   added = yellow
+#   changed = green
+#   untracked = cyan
+
+[merge]
+  log = true
+  tool = meld
+
+[alias]
+  c = commit -v
+  a = add --all
+  st = status -s
+  changed = ! git status -s | awk '{print $2}' | xargs # use this like "git changed vim", which will open all changed files in vim
+  co = checkout
+  d = difftool
+  l = log --pretty=format:'%Cred%h%Creset %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  lg = log --graph --pretty=format:'%Cred%h%Creset %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  b = branch
+  cleanup = ! git branch --merged | grep -v '*' | grep -v '^  master$' | xargs git branch -d
+  push-new = ! git push -u origin `git rev-parse --abbrev-ref HEAD`
+
+[core]
+  excludesfile = /Users/paul/.gitignore
+  whitespace = trailing-space,space-before-tab
+
+[push]
+	default = simple
+[commit]
+	gpgsign = true
+
+[gpg]
+  program = gpg
+
+
+[diff]
+	algorithm = patience
+[protocol]
+	version = 2
+[credential]
+	helper = osxkeychain
+[url "https://github.com/Shopify/"]
+	insteadOf = git@github.com:Shopify/
+	insteadOf = git@github.com:shopify/
+	insteadOf = ssh://git@github.com/Shopify/
+	insteadOf = ssh://git@github.com/shopify/

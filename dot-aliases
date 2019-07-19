@@ -1,0 +1,23 @@
+alias e="code"
+alias ack="ack -k"
+alias be="bundle exec"
+alias f="foreman start"
+alias frun="foreman run bundle exec"
+alias ip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
+alias localip="ifconfig | egrep \"^[a-z0-9]+:|inet \" | cut -d : -f 1 | cut -d \" \" -f 1,2"
+alias log="tail -F log/development.log"
+alias mm="bundle exec middleman server"
+alias mou="open -a Mou"
+alias r="bundle exec rails"
+alias rake="bundle exec rake"
+alias top=htop
+#alias m="if [ -f settings.json ] ; then meteor --settings settings.json; else meteor; fi"
+alias n="npm start"
+alias ssh-no-host-key-check="ssh -o StrictHostKeychecking=no"
+#alias npm="~/bin/npm-wrapper"
+alias ys="yarn start"
+
+# AWS
+#alias aws-p=". $HOME/Documents/Amazon/config/config"
+#alias aws-gu=". $HOME/Documents/Business/Clients/2010/GaggleUp/aws/config"
+#alias aws-gp="hdid -quiet /Users/paul/Documents/personal/Clients/2007/GigPark/aws/EC2-credentials.sparseimage && . /Volumes/EC2-credentials/config "
