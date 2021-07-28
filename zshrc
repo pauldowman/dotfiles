@@ -2,13 +2,15 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/pauldowman/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
+#ZSH_THEME="agnoster"
+ZSH_THEME="tjkirch"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git battery)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,4 +106,27 @@ source $ZSH/oh-my-zsh.sh
 export VISUAL="code -w"
 export PATH=$PATH:/Volumes/Personal/bin
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/pauldowman/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pauldowman/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/pauldowman/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pauldowman/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Go stuff
+export GOPATH=$HOME
+export PATH=$GOPATH/bin:$PATH
+
+# For GPG agent
+export GPG_TTY=`tty`
+
+if [ -e /Users/pauldowman/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/pauldowman/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# iterm badge with param
+badge() {
+  printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n $1 | base64)
+}
+
+# iterm badge with dirname
+badge-dirname() {
+  printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n $(basename $(pwd)) | base64)
+}

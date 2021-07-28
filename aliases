@@ -1,0 +1,13 @@
+alias e="code"
+alias s="start-iterm-workspace"
+alias ack="ack -k"
+alias ip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
+alias localip="ifconfig | egrep \"^[a-z0-9]+:|inet \" | cut -d : -f 1 | cut -d \" \" -f 1,2"
+alias r="bundle exec rails"
+alias rake="bundle exec rake"
+alias top=htop
+alias ns="npm start"
+alias nr="npm run"
+alias ssh-no-host-key-check="ssh -o StrictHostKeychecking=no"
+alias dt="dev test --include-branch-commits"
+alias localshopify=~/src/github.com/Shopify/shopify-cli/bin/shopify
