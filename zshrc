@@ -138,3 +138,8 @@ badge-dirname() {
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Shopify spin-specific config
+if [ $SPIN ]; then
+  export TZ=/usr/share/zoneinfo/America/Edmonton
+fi
