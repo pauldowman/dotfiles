@@ -11,3 +11,4 @@ alias nr="npm run"
 alias ssh-no-host-key-check="ssh -o StrictHostKeychecking=no"
 alias dt="dev test --include-branch-commits"
 alias localshopify=~/src/github.com/Shopify/shopify-cli/bin/shopify
+alias t="tmux new-session -A -s main"
