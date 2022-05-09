@@ -58,7 +58,6 @@
 [gpg]
   program = gpg
 
-
 [diff]
 	algorithm = patience
 	noprefix = true
@@ -72,7 +71,6 @@
 [gc]
 	writeCommitGraph = true
 [credential]
-	helper = 
-	helper = store --file /opt/dev/var/private/git_credential_store
+	helper = store --file ~/.git-credentials
 [pull]
 	rebase = true
