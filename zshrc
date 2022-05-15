@@ -68,7 +68,7 @@ ZSH_THEME="tjkirch"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git battery)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,7 +102,6 @@ source $ZSH/oh-my-zsh.sh
 
 . ~/.aliases
 export VISUAL="code -w"
-export PATH=$PATH:/Volumes/Personal/bin
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/pauldowman/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pauldowman/Downloads/google-cloud-sdk/path.zsh.inc'; fi
