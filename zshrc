@@ -98,8 +98,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
-
 . ~/.aliases
 export VISUAL="code -w"
 
@@ -132,11 +130,16 @@ github() {
   open "https://github.com/`git remote -v | grep origin | head -1 | sed 's/^.*github.com[/:]\(.*\)\.git.*/\1/'`/tree/`git branch | grep '^\*' | awk '{print $2}'`"
 }
 
-# Shopify spin-specific config
-if [ $SPIN ]; then
-  export TZ=/usr/share/zoneinfo/America/Edmonton
-fi
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+########
+# Shopify-specific config
+
+[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
+
+if [ $SPIN ]; then
+  export TZ=/usr/share/zoneinfo/America/Edmonton
+fi
+########
