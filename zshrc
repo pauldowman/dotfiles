@@ -128,6 +128,10 @@ badge-dirname() {
   printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n $(basename $(pwd)) | base64)
 }
 
+github() {
+  open "https://github.com/`git remote -v | grep origin | head -1 | sed 's/^.*github.com[/:]\(.*\)\.git.*/\1/'`/tree/`git branch | grep '^\*' | awk '{print $2}'`"
+}
+
 # Shopify spin-specific config
 if [ $SPIN ]; then
   export TZ=/usr/share/zoneinfo/America/Edmonton
