@@ -133,13 +133,3 @@ github() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-########
-# Shopify-specific config
-
-[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
-
-if [ $SPIN ]; then
-  export TZ=/usr/share/zoneinfo/America/Edmonton
-fi
-########
