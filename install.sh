@@ -7,6 +7,6 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 
 for FILE in `ls $DOTFILEDIR` ; do 
   echo $FILE
-  rm ~/.$FILE
+  rm -f ~/.$FILE
   ln -s $DOTFILEDIR/$FILE ~/.$FILE
 done
