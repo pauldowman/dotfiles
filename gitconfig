@@ -29,7 +29,6 @@
 
 [merge]
   log = true
-  tool = meld
 
 [alias]
   c = commit -v
@@ -37,7 +36,7 @@
   st = status -s
   changed = ! git status -s | awk '{print $2}' | xargs # use this like "git changed vim", which will open all changed files in vim
   co = checkout
-  d = difftool
+  d = diff
   l = log --pretty=format:'%Cred%h%Creset %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   lg = log --graph --pretty=format:'%Cred%h%Creset %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   b = branch
