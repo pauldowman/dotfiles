@@ -13,4 +13,4 @@ alias dt="dev test --include-branch-commits"
 alias localshopify=~/src/github.com/Shopify/shopify-cli/bin/shopify
 alias t="tmux new-session -A -s main"
 alias aptup="sudo apt update && sudo apt upgrade && sudo apt autoremove"
-alias o="~/q/scripts/open-project-state"
+alias o="~/q/scripts/open-project"
