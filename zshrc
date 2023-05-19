@@ -101,12 +101,6 @@ source $ZSH/oh-my-zsh.sh
 . ~/.aliases
 export VISUAL="code -w"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/pauldowman/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/pauldowman/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/pauldowman/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/pauldowman/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 # Go stuff
 export GOPATH=$HOME
 export PATH=$GOPATH/bin:$PATH
@@ -118,12 +112,11 @@ if [ -e /Users/pauldowman/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/pau
 
 # iterm badge with param
 badge() {
-  printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n $1 | base64)
-}
-
-# iterm badge with dirname
-badge-dirname() {
-  printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n $(basename $(pwd)) | base64)
+  badge="$1"
+  if [ -z "$badge" ]; then
+    badge=$(basename $(pwd))
+  fi
+  printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$badge" | base64)
 }
 
 github() {
