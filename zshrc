@@ -119,8 +119,8 @@ badge() {
   printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$badge" | base64)
 }
 
-github() {
-  open "https://github.com/`git remote -v | grep origin | head -1 | sed 's/^.*github.com[/:]\(.*\)\.git.*/\1/'`/tree/`git branch | grep '^\*' | awk '{print $2}'`"
+github-url() {
+  echo "https://github.com/`git remote -v | grep origin | head -1 | sed 's/^.*github.com[/:]\(.*\)\.git.*/\1/'`/tree/`git branch | grep '^\*' | awk '{print $2}'`"
 }
 
 export NVM_DIR="$HOME/.nvm"
