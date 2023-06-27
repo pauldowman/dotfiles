@@ -1,6 +1,6 @@
 #/bin/bash
 
-DOTFILEDIR=`dirname $0`
+DOTFILEDIR=$(realpath $(dirname $0))
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
