@@ -99,16 +99,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 . ~/.aliases
-export VISUAL="code -w"
 
-# Go stuff
-export GOPATH=$HOME
-export PATH=$GOPATH/bin:$PATH
+export VISUAL="code -w"
 
 # For GPG agent
 export GPG_TTY=`tty`
-
-if [ -e /Users/pauldowman/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/pauldowman/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # iterm badge with param
 badge() {
@@ -123,9 +118,4 @@ github-url() {
   echo "https://github.com/`git remote -v | grep origin | head -1 | sed 's/^.*github.com[/:]\(.*\)\.git.*/\1/'`/tree/`git branch | grep '^\*' | awk '{print $2}'`"
 }
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+test -f ~/.zshrc.local && . ~/.zshrc.local || true
