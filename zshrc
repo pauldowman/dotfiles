@@ -100,7 +100,7 @@ source $ZSH/oh-my-zsh.sh
 
 . ~/.aliases
 
-export VISUAL="code -w"
+export VISUAL="code -n -w"
 
 # For GPG agent
 export GPG_TTY=`tty`
