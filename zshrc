@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="tjkirch"
+# ZSH_THEME="tjkirch"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,7 +68,7 @@ ZSH_THEME="tjkirch"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git nix-shell)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -117,5 +117,25 @@ badge() {
 github-url() {
   echo "https://github.com/`git remote -v | grep origin | head -1 | sed 's/^.*github.com[/:]\(.*\)\.git.*/\1/'`/tree/`git branch | grep '^\*' | awk '{print $2}'`"
 }
+
+function prompt_nix_shell {
+  if [ -n "$IN_NIX_SHELL" ]; then
+    echo "%{$fg[blue]%}(nix)%{$reset_color%}"
+  fi
+}
+
+function prompt_char {
+	if [ $UID -eq 0 ]; then echo "%{$fg[red]%}#%{$reset_color%}"; else echo $; fi
+}
+
+ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[green]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}⚡"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+PROMPT='%(?, ,%{$fg[red]%}FAIL: $?%{$reset_color%}
+)
+%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%}: %{$fg_bold[blue]%}%~%{$reset_color%}$(git_prompt_info)$(prompt_nix_shell)
+%_$(prompt_char) '
+RPROMPT='%{$fg[green]%}[%*]%{$reset_color%}'
 
 test -f ~/.zshrc.local && . ~/.zshrc.local || true

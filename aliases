@@ -6,4 +6,5 @@ alias ssh-no-host-key-check="ssh -o StrictHostKeychecking=no"
 alias t="tmux new-session -A -s main"
 alias aptup="sudo apt update && sudo apt upgrade && sudo apt autoremove"
 alias o="~/q/scripts/open-project"
-alias nd="nix develop"
+alias nd="nix develop -c zsh"
+alias c='RUST_LOG=debug cargo run --'
