@@ -8,3 +8,7 @@ alias aptup="sudo apt update && sudo apt upgrade && sudo apt autoremove"
 alias o="~/q/scripts/open-project"
 alias nd="nix develop -c zsh"
 alias c='RUST_LOG=debug cargo run --'
+alias ndc='nix develop'
+alias ndc='nix develop -c'
+alias python=python3
+alias pip=pip3
