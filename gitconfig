@@ -25,10 +25,10 @@
   d = diff
   l = log --pretty=format:'%Cred%h%Creset %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   lg = log --graph --pretty=format:'%Cred%h%Creset %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-  b = branch
   cleanup = ! git branch --merged main | grep -v '*' | egrep -v '  main$' | xargs git branch -d
   push-new = ! git push -u origin `git rev-parse --abbrev-ref HEAD`
   pf = push --force-with-lease
+  save = ! git tag -f "paul-temp-$(date '+%Y-%m-%d')"
 
 [core]
   excludesfile = ~/.gitignore
