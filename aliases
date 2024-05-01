@@ -1,7 +1,6 @@
 alias e="code"
 alias ip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
 alias localip="ifconfig | egrep \"^[a-z0-9]+:|inet \" | cut -d : -f 1 | cut -d \" \" -f 1,2"
-alias top=htop
 alias ssh-no-host-key-check="ssh -o StrictHostKeychecking=no"
 alias t="tmux new-session -A -s main"
 alias aptup="sudo apt update && sudo apt upgrade && sudo apt autoremove"
