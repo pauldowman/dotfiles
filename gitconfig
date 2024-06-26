@@ -50,8 +50,6 @@
 	version = 2
 [gc]
 	writeCommitGraph = true
-[credential]
-	helper = store --file ~/.git-credentials
 [pull]
 	rebase = true
 [init]
