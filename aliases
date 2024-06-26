@@ -1,13 +1,10 @@
+alias g=git
 alias e="code"
+alias o="~/q/scripts/open-project"
 alias ip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
 alias localip="ifconfig | egrep \"^[a-z0-9]+:|inet \" | cut -d : -f 1 | cut -d \" \" -f 1,2"
 alias ssh-no-host-key-check="ssh -o StrictHostKeychecking=no"
 alias t="tmux new-session -A -s main"
 alias aptup="sudo apt update && sudo apt upgrade && sudo apt autoremove"
-alias o="~/q/scripts/open-project"
-alias nd="nix develop -c zsh"
 alias c='RUST_LOG=debug cargo run --'
-alias ndc='nix develop'
-alias ndc='nix develop -c'
-alias python=python3
-alias pip=pip3
+alias nd="nix develop -c zsh"
