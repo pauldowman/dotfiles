@@ -11,6 +11,8 @@ else
   alias code=vim
 fi
 
+bindkey -e  # use emacs key bindings for command prompt (it will default to vim mode if $VISUAL=vim)
+
 # For GPG agent
 export GPG_TTY=`tty`
 
