@@ -4,11 +4,11 @@ HISTFILE=$HOME/.zsh_history
 
 . ~/.aliases
 
-if command -v code &> /dev/null; then
-  export VISUAL="code -n -w"
+if command -v cursor &> /dev/null; then
+  export VISUAL="cursor -n -w"
 else
   export VISUAL="vim"
-  alias code=vim
+  alias cursor=vim
 fi
 
 bindkey -e  # use emacs key bindings for command prompt (it will default to vim mode if $VISUAL=vim)
