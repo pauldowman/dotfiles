@@ -1,6 +1,13 @@
 export LANG=en_US.UTF-8
 
-HISTFILE=$HOME/.zsh_history
+export HISTFILE=$HOME/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
 
 . ~/.aliases
 
