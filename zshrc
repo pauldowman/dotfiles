@@ -11,6 +11,7 @@ setopt HIST_REDUCE_BLANKS
 
 . ~/.aliases
 
+unset GIT_EDITOR # Fix devcontainers in cursor
 if command -v cursor &> /dev/null; then
   export VISUAL="cursor -n -w"
 else
