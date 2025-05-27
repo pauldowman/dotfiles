@@ -8,4 +8,3 @@ alias t="tmux new-session -A -s main"
 alias aptup="sudo apt update && sudo apt upgrade && sudo apt autoremove"
 alias c='RUST_LOG=debug cargo run --'
 alias focus="~/dev/__personal/scripts/focus.sh"
-alias cat='bat --paging=never'
