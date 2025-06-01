@@ -1,4 +1,6 @@
 .DS_Store
+.cursorignore
 .iterm-workspace
+agent-planning/
 project-state.txt
 project-state.md
