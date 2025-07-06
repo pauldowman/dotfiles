@@ -14,9 +14,13 @@ setopt HIST_REDUCE_BLANKS
 unset GIT_EDITOR # Fix devcontainers in cursor
 if command -v cursor &> /dev/null; then
   export VISUAL="cursor -n -w"
+  alias e=cursor
+elif command -v code &> /dev/null; then
+  export VISUAL="code -n -w"
+  alias e=code
 else
   export VISUAL="vim"
-  alias cursor=vim
+  alias e=vim
 fi
 
 bindkey -e  # use emacs key bindings for command prompt (it will default to vim mode if $VISUAL=vim)
