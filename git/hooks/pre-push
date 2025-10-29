@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Redirect output to stderr.
+exec 1>&2
+# enable user input
+exec < /dev/tty
+
+REVIEW_BRANCH=$(git rev-parse --abbrev-ref @{upstream} 2>/dev/null)
+
+if [[ -z "$REVIEW_BRANCH" ]]; then
+  REVIEW_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+  if [[ -z "$REVIEW_BRANCH" ]]; then
+    echo "Could not determine the remote branch to review against. [$0]"
+    exit 1;
+  fi
+fi
+
+echo "Reviewing changes against ${REVIEW_BRANCH}... [$0]"
+
+claude "review the changes on this branch against ${REVIEW_BRANCH}" || exit 1;
+
+if read -p "Press ENTER to continue with push... [$0]"
+then
+  exit 0;
+else
+  exit 1;
+fi
