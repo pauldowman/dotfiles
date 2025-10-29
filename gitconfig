@@ -35,7 +35,7 @@
   excludesfile = ~/.gitignore
   whitespace = trailing-space,space-before-tab
 	commitGraph = true
-	hooksPath = ~/.git/hooks
+	hooksPath = ~/.config/git/hooks
 
 [push]
 	default = simple
