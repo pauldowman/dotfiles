@@ -17,7 +17,7 @@ fi
 
 echo "Reviewing changes against ${REVIEW_BRANCH}... [$0]"
 
-claude "review the changes on this branch against ${REVIEW_BRANCH}" || exit 1;
+claude "review the changes on this branch against ${REVIEW_BRANCH}"
 
 if read -p "Press ENTER to continue with push... [$0]"
 then
