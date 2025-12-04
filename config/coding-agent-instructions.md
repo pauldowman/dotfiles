@@ -6,7 +6,7 @@ Directory Structure
 
 All plans live under:
 agent-planning/
-  ├── plan-{ID}.md      # One per change / feature / fix
+  ├── {ID}.md      # One per change / feature / fix
   └── ...
 
 Where {ID} is a short human-readable identifier, starting with an integer that increments, e.g. 02-add-view-page.
@@ -18,7 +18,7 @@ Where {ID} is a short human-readable identifier, starting with an integer that i
 When working with a plan, the agent must create or update a plan-{ID}.md file with the following format:
 
 ```
-# Plan {ID}
+# {ID}
 
 ## Objective
 Explain the goal of the change in one or two sentences.
@@ -33,6 +33,7 @@ Break the work down into **discrete, ordered steps**.
 - Optional discussion of assumptions, alternatives, dependencies, or TODOs.
 
 ```
+
 
 ## 2. Each step is a "vertical slice" of functionality or a refactor
 
