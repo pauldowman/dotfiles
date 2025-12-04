@@ -30,6 +30,7 @@
   push-new = ! git push -u origin `git rev-parse --abbrev-ref HEAD`
   pf = push --force-with-lease
   save = ! git tag -f "paul-temp-$(date '+%Y-%m-%d')"
+  com = ! git checkout $(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
 
 [core]
   excludesfile = ~/.gitignore
