@@ -77,4 +77,7 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$PATH:$HOME/.foundry/bin"
 
+# Claude Code
+export PATH="$HOME/.local/bin:$PATH"
+
 test -f ~/.zshrc.local && . ~/.zshrc.local || true
