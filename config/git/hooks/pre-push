@@ -2,8 +2,6 @@
 
 # Redirect output to stderr.
 exec 1>&2
-# enable user input
-exec < /dev/tty
 
 REVIEW_BRANCH=$(git rev-parse --abbrev-ref @{upstream} 2>/dev/null)
 
@@ -19,9 +17,5 @@ echo "Reviewing changes against ${REVIEW_BRANCH}... [$0]"
 
 claude "Review the changes on this branch against ${REVIEW_BRANCH}. Don't re-fetch the remote branch."
 
-if read -p "Press ENTER to continue with push... [$0]"
-then
-  exit 0;
-else
-  exit 1;
-fi
+read -p "Press ENTER to continue with push... [$0]" < /dev/tty
+exit 0
