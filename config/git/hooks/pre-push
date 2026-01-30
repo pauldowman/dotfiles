@@ -11,8 +11,8 @@ if [[ -z "$REVIEW_BRANCH" ]]; then
   REVIEW_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
   if [[ -z "$REVIEW_BRANCH" ]]; then
     echo "Could not determine the remote branch to review against. [$0]"
-    exit 1;
   fi
+  REVIEW_BRANCH="the default branch"
 fi
 
 echo "Reviewing changes against ${REVIEW_BRANCH}... [$0]"
