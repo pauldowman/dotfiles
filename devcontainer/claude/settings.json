@@ -10,7 +10,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ~/.claude/hooks/check-git.py"
+            "command": "~/.claude/hooks/check-git.sh"
           }
         ]
       }
