@@ -9,3 +9,7 @@ find "$DOTFILEDIR" -type f -not -name "install.sh" -not -path "*/.*" -print0 | w
     echo "Installing $REL_PATH => $HOME/.$REL_PATH"
     ln -sf "$FILE" "$HOME/.$REL_PATH"
 done
+
+if [ -f "$DOTFILEDIR/gnupg/pubkey.asc" ]; then
+    gpg --import "$DOTFILEDIR/gnupg/pubkey.asc" 2>/dev/null || true
+fi
