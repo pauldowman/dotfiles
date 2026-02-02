@@ -32,7 +32,7 @@
   pf = push --force-with-lease
   save = ! git tag -f "paul-temp-$(date '+%Y-%m-%d')"
   com = ! git checkout $(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
-	w = "!f() { repo=$(basename $(git rev-parse --show-toplevel)); git worktree add -b \"$1\" \"../${repo}+$1\"; }; f"
+	w = "!f() { repo=$(basename $(git rev-parse --show-toplevel)); pathsafe=$(echo \"$1\" | sed 's|/|--|g'); git worktree add -b \"$1\" \"../${repo}+${pathsafe}\"; }; f"
 
 [core]
   excludesfile = ~/.gitignore
