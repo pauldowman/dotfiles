@@ -34,10 +34,9 @@ Break the work down into **discrete, ordered steps**.
 
 ```
 
-
 ## 2. Each step is a "vertical slice" of functionality or a refactor
 
-When breaking down work into steps organize them into a series of changes that each include end-to-end changes even if the changes are trivial, so that the app remains working with tests passing after each step. 
+When breaking down work into steps organize them into a series of changes that each include end-to-end changes even if the changes are trivial, so that the app remains working with tests passing after each step.
 
 For example, when adding a new page one step might be to add an empty page and routes, then the next step might add the first component to the page with hard-coded values, then another step might replace the hard-coded values with API calls.
 
@@ -61,21 +60,33 @@ ALWAYS INCLUDE TESTS WITHIN EACH STEP. There should not be a separate step for t
 
 Describe which specific scenarios will be tested as part of the step description.
 
-## 5. Stop after creating the plan
+## 5. Review the plan
 
-After creating the plan, stop for the user to edit and confirm the plan. The user will begin a new execution for each step.
+After creating a plan, have a sub-agent review the plan, to ensure that it's the best way to achieve the goal and that it follows the principles in this document.
 
-## 6. Execute one step at a time
+## 6. Stop after creating the plan
+
+After creating the plan, stop for the user to edit and confirm the plan.
+
+## 7. Execute one step at a time
 
 When implementing a plan:
 - Always refer to the current step from the Steps section.
 - Before executing, read the step and confirm its scope.
 - Only modify code corresponding to that single step.
-- Run tests to ensure that the change hasn't broken anything
+- Run tests to ensure that the change hasn't broken anything.
+- Have a sub-agent review the change.
+- If executing multiple steps you can commit the changes to the git repo. But **DO NOT push the branch** and **DO NOT change any branch other than the current branch**.
+    - Commit messages should be terse and one single line
 - After executing, always update the plan to mark the step as done, skipped, or blocked with a brief note.
-- Stop and allow the user to check the change.
-- Never commit the changes to the git repo. The user will do that manually.
 - Do not skip steps or combine multiple steps in a single execution.
+
+## 8. Reviewing each change
+
+Each change should be reviewed by a sub-agent before committing. The sub-agent should review it for the following:
+1. Ensure that it matches what was planned, or if it deviates from the plan that it's an improvement from what was planned.
+2. Review it for correctness.
+3. Ensure it's as clean and simple as possible, while still achieving the goals.
 
 # Coding style
 
