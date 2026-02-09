@@ -1,6 +1,14 @@
 {
   "permissions": {
-    "allow": ["Bash(*)", "Edit", "Write", "NotebookEdit", "Mcp:*", "Fetch(*)"],
+    "allow": [
+      "Bash(*)",
+      "Edit",
+      "Write",
+      "NotebookEdit",
+      "Mcp:*",
+      "Fetch(*)",
+      "WebSearch"
+    ],
     "deny": []
   },
   "hooks": {
