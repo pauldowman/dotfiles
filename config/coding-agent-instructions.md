@@ -92,4 +92,8 @@ Each change should be reviewed by a sub-agent before committing. The sub-agent s
 
 ## Prefer code that's self-documenting and easily readable rather than comments.
 
-Assume the reader can read code, and avoid redundant comments unless the code might be confusing. Comments explaining _why_ are useful, but comments that just duplicate the code are not.
+- Assume the reader can read code, and avoid redundant comments unless the code might be confusing. 
+- Avoid unnecessary comments. Comments should explain _why_, but not _what_, unless it's not obvious. Prefer refactoring code into functions with sensible names to make it readable.
+- Always write unit tests for all changes.
+- Never delete or skip failing tests to solve the problem, always try to fix them, and alert the user if there's a good reason why the test is no longer applicable or doesn't add confidence.
+- Add or update end-to-end tests for main functionality, but typically just one case for a feature. Use unit tests for combinations of different input and edge cases.
