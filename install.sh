@@ -11,7 +11,7 @@ find "$DOTFILEDIR" \( -type f -o -type l \) -not -name "install.sh" -not -path "
 done
 
 if [ -f "$DOTFILEDIR/gnupg/pubkey.asc" ]; then
-    gpg --import "$DOTFILEDIR/gnupg/pubkey.asc" 2>/dev/null || true
+    gpg --no-autostart --import "$DOTFILEDIR/gnupg/pubkey.asc" 2>/dev/null || true
 fi
 
 # Install devcontainer-specific overrides
