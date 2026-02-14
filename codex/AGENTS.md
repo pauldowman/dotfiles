@@ -1,0 +1,1 @@
+../config/coding-agent-instructions.md

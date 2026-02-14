@@ -1,0 +1,13 @@
+  allow: *
+
+  deny:
+    - git push
+    - git push --*
+    - git remote
+    - git remote --*
+    - git branch
+    - git branch --*
+    - git switch
+    - git switch --*
+    - git checkout -b *
+    - git checkout --orphan *
