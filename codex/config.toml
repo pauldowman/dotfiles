@@ -1,3 +1,6 @@
 model = "gpt-5.3-codex"
 trust_level = "trusted"
 personality = "pragmatic"
+sandbox_mode = "danger-full-access"
+approval_policy = "never"
+network_access = "enabled"
