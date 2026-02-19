@@ -13,10 +13,10 @@ setopt HIST_REDUCE_BLANKS
 
 unset GIT_EDITOR # Fix devcontainers in cursor
 if command -v cursor &> /dev/null; then
-  export VISUAL="cursor -n -w"
+  export VISUAL="cursor -w"
   alias e=cursor
 elif command -v code &> /dev/null; then
-  export VISUAL="code -n -w"
+  export VISUAL="code -w"
   alias e=code
 else
   export VISUAL="vim"
