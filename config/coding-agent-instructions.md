@@ -81,12 +81,16 @@ When implementing a plan:
 - After executing, always update the plan to mark the step as done, skipped, or blocked with a brief note.
 - Do not skip steps or combine multiple steps in a single execution.
 
-## 8. Reviewing each change
+## 8. Review each change
 
 Each change should be reviewed by a sub-agent before committing. The sub-agent should review it for the following:
 1. Ensure that it matches what was planned, or if it deviates from the plan that it's an improvement from what was planned.
 2. Review it for correctness.
 3. Ensure it's as clean and simple as possible, while still achieving the goals.
+
+## 9. Commit the change
+
+Each change should be committed after it has been reviewed by the sub-agent. The user will then review and may request changes, in which case the commit can be amended. Committing after each step allows the changes to be reviewed more easily, with each step corresponding to a commit.
 
 # Coding style
 
