@@ -1,7 +1,7 @@
 [user]
   name = Paul Dowman
   email = paul@pauldowman.com
-  signingkey = 3EFA83902BF33818369F16A68454359FB0948235
+	signingkey = /home/paul/.ssh/id_signing.pub
 
 [github]
   user = pauldowman
@@ -50,7 +50,7 @@
 	gpgsign = true
 
 [gpg]
-  program = gpg
+	format = ssh
 
 [diff]
 	algorithm = patience
@@ -65,3 +65,9 @@
 	defaultBranch = main
 [credential]
 	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
