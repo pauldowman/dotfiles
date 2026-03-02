@@ -13,7 +13,7 @@ setopt HIST_REDUCE_BLANKS
 
 unset GIT_EDITOR # Fix devcontainers in cursor
 if command -v nvim &> /dev/null; then
-  export VISUAL="nvim -w"
+  export VISUAL="nvim"
   alias e=nvim
 elif command -v code &> /dev/null; then
   export VISUAL="code -w"
