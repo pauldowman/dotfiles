@@ -33,10 +33,11 @@ github-url() {
 }
 
 dev() {
-  if [ "$1" -eq "list"] ; then
+  if [ "$1" = "list" ] ; then
     ssh -t dev tmux list-sessions
+  else
+    ssh -t dev tmux new-session -A -s $1 -c /home/paul/code/$1
   fi
-  ssh -t dev tmux new-session -A -s $1 -c /home/paul/code/$1
 }
 
 setopt AUTO_CD
