@@ -12,9 +12,9 @@ setopt HIST_REDUCE_BLANKS
 . ~/.aliases
 
 unset GIT_EDITOR # Fix devcontainers in cursor
-if command -v cursor &> /dev/null; then
-  export VISUAL="cursor -w"
-  alias e=cursor
+if command -v nvim &> /dev/null; then
+  export VISUAL="nvim -w"
+  alias e=nvim
 elif command -v code &> /dev/null; then
   export VISUAL="code -w"
   alias e=code
@@ -28,17 +28,15 @@ bindkey -e  # use emacs key bindings for command prompt (it will default to vim 
 # For GPG agent
 export GPG_TTY=`tty`
 
-# iterm badge with param
-badge() {
-  badge="$1"
-  if [ -z "$badge" ]; then
-    badge=$(basename $(pwd))
-  fi
-  printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$badge" | base64)
-}
-
 github-url() {
   echo "https://github.com/`git remote -v | grep origin | head -1 | sed 's/^.*github.com[/:]\(.*\)\.git.*/\1/'`/tree/`git branch | grep '^\*' | awk '{print $2}'`"
+}
+
+dev() {
+  if [ "$1" -eq "list"] ; then
+    ssh -t dev tmux list-sessions
+  fi
+  ssh -t dev tmux new-session -A -s $1 -c /home/paul/code/$1
 }
 
 setopt AUTO_CD
