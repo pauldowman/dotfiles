@@ -1,7 +1,7 @@
 [user]
   name = Paul Dowman
   email = paul@pauldowman.com
-	signingkey = /home/paul/.ssh/id_signing.pub
+	signingkey = ~/.ssh/id_signing.pub
 
 [github]
   user = pauldowman
