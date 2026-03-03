@@ -55,8 +55,8 @@ _dev() {
   local -a subdirs
   subdirs=("list:List all tmux sessions")
   # Add all subdirectories of ~/code
-  # (N) = null glob (return empty if no matches), (/) = only directories
-  for dir in ~/code/*(N/); do
+  # (N) = null glob (return empty if no matches), (/) = directories, (@) = symlinks
+  for dir in $HOME/code/*(N/,@); do
     local dirname="${dir:t}"
     subdirs+=("$dirname")
   done
