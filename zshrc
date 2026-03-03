@@ -1,5 +1,9 @@
 export LANG=en_US.UTF-8
 
+# Initialize completion system
+autoload -Uz compinit
+compinit
+
 export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
@@ -33,12 +37,33 @@ github-url() {
 }
 
 dev() {
-  if [ "$1" = "list" ] ; then
-    ssh -t dev tmux list-sessions
+  if [ -f ~/code/.edit-locally ] ; then
+    SSH=""
   else
-    ssh -t dev tmux new-session -A -s $1 -c /home/paul/code/$1
+    SSH="ssh -t dev"
+  fi
+
+  if [ "$1" = "list" ] ; then
+    $SSH tmux list-sessions
+  else
+    $SSH tmux new-session -A -s $1 -c ~/code/$1
   fi
 }
+
+# Autocomplete for dev() - suggests subdirectories of ~/code
+_dev() {
+  local -a subdirs
+  subdirs=("list:List all tmux sessions")
+  # Add all subdirectories of ~/code
+  # (N) = null glob (return empty if no matches), (/) = only directories
+  for dir in ~/code/*(N/); do
+    local dirname="${dir:t}"
+    subdirs+=("$dirname")
+  done
+  _describe 'dev projects' subdirs
+}
+
+compdef _dev dev
 
 setopt AUTO_CD
 
