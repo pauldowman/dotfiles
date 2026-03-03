@@ -32,4 +32,5 @@ opt.wrap = false
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+opt.autoread = true
 
