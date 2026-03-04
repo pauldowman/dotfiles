@@ -1,7 +1,7 @@
 [user]
   name = Paul Dowman
   email = paul@pauldowman.com
-	signingkey = ~/.ssh/id_signing.pub
+  signingkey = ~/.ssh/id_signing.pub
 
 [github]
   user = pauldowman
@@ -27,47 +27,47 @@
   l = log --pretty=format:'%Cred%h%Creset %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   lg = log --graph --pretty=format:'%Cred%h%Creset %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   cleanup = ! git branch --merged | grep -v '*' | xargs git branch -d
-	cleanup-squashed = !git pull --prune && git branch --format=\"%(refname:short) %(upstream:track)\" | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
+  cleanup-squashed = !git pull --prune && git branch --format=\"%(refname:short) %(upstream:track)\" | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
   push-new = ! git push -u origin `git rev-parse --abbrev-ref HEAD`
   pf = push --force-with-lease
   save = ! git tag -f "paul-temp-$(date '+%Y-%m-%d')"
   com = ! git checkout $(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
-	w = "!f() { repo=$(basename $(git rev-parse --show-toplevel)); pathsafe=$(echo \"$1\" | sed 's|/|--|g'); git worktree add -b \"$1\" \"../${repo}+${pathsafe}\"; }; f"
+  w = "!f() { repo=$(basename $(git rev-parse --show-toplevel)); pathsafe=$(echo \"$1\" | sed 's|/|--|g'); git worktree add -b \"$1\" \"../${repo}+${pathsafe}\"; }; f"
 
 [core]
   excludesfile = ~/.gitignore
   whitespace = trailing-space,space-before-tab
-	commitGraph = true
-	hooksPath = ~/.config/git/hooks
+  commitGraph = true
+  hooksPath = ~/.config/git/hooks
 
 [push]
-	default = simple
+  default = simple
 
 [commit]
-	gpgsign = true
+  gpgsign = true
 
 [tag]
-	gpgsign = true
+  gpgsign = true
 
 [gpg]
-	format = ssh
+  format = ssh
 
 [diff]
-	algorithm = patience
-	noprefix = true
+  algorithm = patience
+  noprefix = true
 [protocol]
-	version = 2
+  version = 2
 [gc]
-	writeCommitGraph = true
+  writeCommitGraph = true
 [pull]
-	rebase = true
+  rebase = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [credential]
-	helper = /usr/local/share/gcm-core/git-credential-manager
+  helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://github.com"]
-	helper = 
-	helper = !gh auth git-credential
+  helper = 
+  helper = !gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
-	helper = !gh auth git-credential
+  helper = 
+  helper = !gh auth git-credential
