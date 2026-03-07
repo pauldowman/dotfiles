@@ -3,7 +3,7 @@
 # Redirect output to stderr.
 exec 1>&2
 
-read -p "Press enter to review with Claude, n to skip) [$0] " -n 1 -r < /dev/tty
+read -p "Press enter to review with Claude, n to skip) [$0] " -n 1 -r </dev/tty
 echo
 if [[ $REPLY =~ ^[Nn]$ ]]; then
   exit 0
@@ -21,7 +21,8 @@ fi
 
 echo "Reviewing changes against ${REVIEW_BRANCH}... [$0]"
 
-claude "Review the changes on this branch against ${REVIEW_BRANCH}. Don't re-fetch the remote branch."
+# uses my containerized claude: https://github.com/pauldowman/agent-container
+agent claude "Review the changes on this branch against ${REVIEW_BRANCH}. Don't re-fetch the remote branch."
 
-read -p "Press ENTER to continue with push... [$0]" < /dev/tty
+read -p "Press ENTER to continue with push... [$0]" </dev/tty
 exit 0
