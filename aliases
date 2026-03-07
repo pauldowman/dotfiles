@@ -8,3 +8,4 @@ alias aptup="sudo apt update && sudo apt upgrade && sudo apt autoremove"
 alias c='RUST_LOG=debug cargo run --'
 alias focus="~/dev/__personal/scripts/focus.sh"
 alias claude="safe-agent claude"
+alias codex="safe-agent codex"
