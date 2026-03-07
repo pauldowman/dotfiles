@@ -22,7 +22,7 @@ fi
 echo "Reviewing changes against ${REVIEW_BRANCH}... [$0]"
 
 # uses my containerized claude: https://github.com/pauldowman/agent-container
-agent claude "Review the changes on this branch against ${REVIEW_BRANCH}. Don't re-fetch the remote branch."
+safe-agent claude "Review the changes on this branch against ${REVIEW_BRANCH}. Don't re-fetch the remote branch."
 
 read -p "Press ENTER to continue with push... [$0]" </dev/tty
 exit 0
