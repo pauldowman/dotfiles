@@ -32,5 +32,21 @@ return {
       float_opts = { border = "rounded" },
     },
   },
+  {
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    keys = {
+      { "<leader>z", "<cmd>ZenMode<CR>", desc = "Zen Mode" },
+    },
+    opts = {
+      window = {
+        width = 120,
+        options = {
+          number = false,
+          relativenumber = false,
+        },
+      },
+    },
+  },
 }
 

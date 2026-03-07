@@ -59,4 +59,21 @@ return {
       use_icons = false,
     },
   },
+  {
+    "ruifm/gitlinker.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      { "<leader>gy", mode = { "n", "v" }, desc = "Copy git link" },
+    },
+    config = function()
+      require("gitlinker").setup({
+        callbacks = {
+          ["github.com"] = require("gitlinker.hosts").get_github_type_url,
+          ["gitlab.com"] = require("gitlinker.hosts").get_gitlab_type_url,
+          ["bitbucket.org"] = require("gitlinker.hosts").get_bitbucket_type_url,
+        },
+        mappings = "<leader>gy",
+      })
+    end,
+  },
 }
