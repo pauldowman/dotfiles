@@ -31,6 +31,7 @@ else
 fi
 
 bindkey -e  # use emacs key bindings for command prompt (it will default to vim mode if $VISUAL=vim)
+bindkey "^[[3~" delete-char  # fn+delete (forward delete) in tmux
 
 # For GPG agent
 export GPG_TTY=`tty`
