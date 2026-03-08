@@ -3,7 +3,7 @@
 DOTFILEDIR=$(realpath "$(dirname "$0")")
 
 is_docker() {
-  [ -f /.dockerenv ] || grep -qE 'docker|containerd' /proc/1/cgroup 2>/dev/null
+  [ -f /.dockerenv ] || [ -f /run/.containerenv ]
 }
 
 find "$DOTFILEDIR" \( -type f -o -type l \) -not -name "install.sh" -not -path "*/.*" -not -path "*/devcontainer/*" -print0 | while IFS= read -r -d '' FILE; do
