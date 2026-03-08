@@ -3,6 +3,9 @@
     "enabled": true,
     "autoAllowBashIfSandboxed": true
   },
+  "permissions": {
+    "defaultMode": "acceptEdits"
+  },
   "hooks": {
     "PreToolUse": [
       {
