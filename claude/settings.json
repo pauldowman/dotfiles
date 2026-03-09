@@ -3,6 +3,7 @@
     "defaultMode": "acceptEdits",
     "allow": [
       "Bash(*)",
+      "Read",
       "Edit",
       "Write",
       "NotebookEdit",
