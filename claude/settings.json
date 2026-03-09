@@ -8,7 +8,7 @@
       "Write",
       "NotebookEdit",
       "Mcp:*",
-      "Fetch(*)",
+      "WebFetch",
       "WebSearch"
     ],
     "deny": [
