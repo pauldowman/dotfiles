@@ -1,5 +1,28 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
+  { "nvim-tree/nvim-web-devicons", lazy = true },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
+    cmd = "Neotree",
+    keys = {
+      { "<leader>E", "<cmd>Neotree toggle<CR>", desc = "Explorer (Neo-tree)" },
+    },
+    opts = {
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_gitignored = false,
+        },
+        follow_current_file = { enabled = true },
+      },
+    },
+  },
   {
     "stevearc/oil.nvim",
     cmd = "Oil",
