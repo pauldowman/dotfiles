@@ -28,7 +28,7 @@ opt.expandtab = true
 opt.shiftwidth = 2
 opt.tabstop = 2
 opt.smartindent = true
-opt.wrap = false
+opt.wrap = true
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
