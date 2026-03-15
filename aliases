@@ -12,7 +12,7 @@ alias review='tuicr -r $(git merge-base HEAD origin/HEAD)..HEAD'
 dev() {
   echo "REMOTE_DEV_SERVER: ${REMOTE_DEV_SERVER:-(none)}"
   if [ -n "${REMOTE_DEV_SERVER:-}" ]; then
-    ssh -t "$REMOTE_DEV_SERVER" ~/code/dev-container/dev "$@"
+    ssh -t "$REMOTE_DEV_SERVER" '~/code/dev-container/dev' "$@"
   else
     ~/code/dev-container/dev "$@"
   fi
