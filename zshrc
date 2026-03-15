@@ -21,19 +21,13 @@ setopt HIST_REDUCE_BLANKS
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-. ~/.aliases
-
-unset GIT_EDITOR # Fix devcontainers in cursor
 if command -v nvim &> /dev/null; then
   export VISUAL="nvim"
-  alias e=nvim
-elif command -v code &> /dev/null; then
-  export VISUAL="code -w"
-  alias e=code
 else
   export VISUAL="vim"
-  alias e=vim
 fi
+
+. ~/.aliases
 
 bindkey -e  # use emacs key bindings for command prompt (it will default to vim mode if $VISUAL=vim)
 bindkey "^[[3~" delete-char  # fn+delete (forward delete) in tmux
