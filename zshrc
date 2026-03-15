@@ -41,40 +41,26 @@ github-url() {
 }
 
 dev() {
-  local -a ssh_cmd=()
-  if [ ! -f ~/code/.edit-locally ]; then
-    ssh_cmd=(ssh -t dev)
-  fi
-
   case "$1" in
-    list)
-      "${ssh_cmd[@]}" tmux list-sessions
-      ;;
     "")
       echo "Usage: dev <session-name> | dev list" >&2
       return 1
       ;;
     *)
-      if [ ${#ssh_cmd[@]} -gt 0 ]; then
-        "${ssh_cmd[@]}" "tmux new-session -A -s '$1' -c \$HOME/code/$1"
+      if [ ! -f ~/code/.edit-locally ]; then
+        ssh -t dev "~/code/dev-container/dev-container $(printf '%q' "$1")"
       else
-        tmux new-session -A -s "$1" -c "$HOME/code/$1"
+        ~/code/dev-container/dev-container "$1"
       fi
       ;;
   esac
 }
 
-# Autocomplete for dev() - suggests subdirectories of ~/code
+# Autocomplete for dev() - completes directory paths under ~/code
 _dev() {
-  local -a subdirs
-  subdirs=("list:List all tmux sessions")
-  # Add all subdirectories of ~/code
-  # (N) = null glob (return empty if no matches), (/) = directories, (@) = symlinks
-  for dir in $HOME/code/*(N/,@); do
-    local dirname="${dir:t}"
-    subdirs+=("$dirname")
-  done
-  _describe 'dev projects' subdirs
+  _alternative \
+    'args:subcommand:(list)' \
+    'dirs:directory:_path_files -/ -W $HOME/code'
 }
 
 compdef _dev dev
