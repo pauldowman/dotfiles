@@ -1,5 +1,4 @@
 alias g=git
-alias dev="~/code/dev-container/dev"
 alias o="devcontainer open"
 alias ip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
 alias localip="ifconfig | egrep \"^[a-z0-9]+:|inet \" | cut -d : -f 1 | cut -d \" \" -f 1,2"
@@ -9,3 +8,13 @@ alias aptup="sudo apt update && sudo apt upgrade && sudo apt autoremove"
 alias c='RUST_LOG=debug cargo run --'
 alias focus="~/dev/__personal/scripts/focus.sh"
 alias review='tuicr -r $(git merge-base HEAD origin/HEAD)..HEAD'
+
+dev() {
+  echo "REMOTE_DEV_SERVER: ${REMOTE_DEV_SERVER:-(none)}"
+  if [ -n "${REMOTE_DEV_SERVER:-}" ]; then
+    ssh -t "$REMOTE_DEV_SERVER" ~/code/dev-container/dev "$@"
+  else
+    ~/code/dev-container/dev "$@"
+  fi
+}
+
