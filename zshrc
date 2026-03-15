@@ -41,17 +41,27 @@ github-url() {
 }
 
 dev() {
-  if [ -f ~/code/.edit-locally ] ; then
-    SSH=""
-  else
-    SSH="ssh -t dev"
+  local -a ssh_cmd=()
+  if [ ! -f ~/code/.edit-locally ]; then
+    ssh_cmd=(ssh -t dev)
   fi
 
-  if [ "$1" = "list" ] ; then
-    $SSH tmux list-sessions
-  else
-    $SSH tmux new-session -A -s $1 -c ~/code/$1
-  fi
+  case "$1" in
+    list)
+      "${ssh_cmd[@]}" tmux list-sessions
+      ;;
+    "")
+      echo "Usage: dev <session-name> | dev list" >&2
+      return 1
+      ;;
+    *)
+      if [ ${#ssh_cmd[@]} -gt 0 ]; then
+        "${ssh_cmd[@]}" "tmux new-session -A -s '$1' -c \$HOME/code/$1"
+      else
+        tmux new-session -A -s "$1" -c "$HOME/code/$1"
+      fi
+      ;;
+  esac
 }
 
 # Autocomplete for dev() - suggests subdirectories of ~/code
