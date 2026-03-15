@@ -1,4 +1,5 @@
 alias g=git
+alias dev="~/code/dev-container/dev"
 alias o="devcontainer open"
 alias ip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
 alias localip="ifconfig | egrep \"^[a-z0-9]+:|inet \" | cut -d : -f 1 | cut -d \" \" -f 1,2"

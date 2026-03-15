@@ -40,30 +40,7 @@ github-url() {
   echo "https://github.com/`git remote -v | grep origin | head -1 | sed 's/^.*github.com[/:]\(.*\)\.git.*/\1/'`/tree/`git branch | grep '^\*' | awk '{print $2}'`"
 }
 
-dev() {
-  case "$1" in
-    "")
-      echo "Usage: dev <session-name> | dev list" >&2
-      return 1
-      ;;
-    *)
-      if [ ! -f ~/code/.edit-locally ]; then
-        ssh -t dev "~/code/dev-container/dev-container $(printf '%q' "$1")"
-      else
-        ~/code/dev-container/dev-container "$1"
-      fi
-      ;;
-  esac
-}
-
-# Autocomplete for dev() - completes directory paths under ~/code
-_dev() {
-  _alternative \
-    'args:subcommand:(list)' \
-    'dirs:directory:_path_files -/ -W $HOME/code'
-}
-
-compdef _dev dev
+eval "$(~/code/dev-container/dev --init)"
 
 setopt AUTO_CD
 
