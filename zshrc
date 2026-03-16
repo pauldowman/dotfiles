@@ -1,4 +1,5 @@
 export LANG=en_US.UTF-8
+export COLORTERM=truecolor
 
 # Initialize completion system
 autoload -Uz compinit

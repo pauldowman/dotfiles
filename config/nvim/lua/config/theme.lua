@@ -1,6 +1,6 @@
 local M = {}
 
-M.themes = { "tokyonight", "gruvbox", "catppuccin" }
+M.themes = { "tokyonight-moon", "gruvbox", "catppuccin" }
 M.index = 1
 
 function M.apply(name)

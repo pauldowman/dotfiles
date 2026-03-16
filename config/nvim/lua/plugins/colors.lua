@@ -47,7 +47,9 @@ return {
         require("config.theme").cycle()
       end, { desc = "Cycle theme" })
 
-      vim.keymap.set("n", "<leader>uT", "<cmd>Telescope colorscheme enable_preview=true<CR>", { desc = "Pick theme" })
+      vim.keymap.set("n", "<leader>uT", function()
+        require("telescope.builtin").colorscheme({ enable_preview = true })
+      end, { desc = "Pick theme" })
     end,
   },
   {
