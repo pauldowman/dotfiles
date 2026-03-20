@@ -11,7 +11,8 @@
       "Mcp:*",
       "WebFetch",
       "WebSearch",
-      "Skill"
+      "Skill",
+      "mcp__claude_ai_Notion__notion-fetch"
     ],
     "deny": ["Bash(git push *)", "Bash(git checkout *)", "Bash(git switch *)"]
   },
