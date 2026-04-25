@@ -42,7 +42,24 @@ If the working tree has uncommitted changes, mention it before going further —
 - Diff to review: `git diff <base>...HEAD` (three-dot — changes on HEAD's side since the merge base).
 - If the diff is empty, stop — there's nothing to PR.
 
-## Step 3 — Title and body
+## Step 3 — Sign unsigned commits in the unpushed range
+
+Sign only the commits that haven't been pushed yet — never rewrite history that's already on the remote.
+
+Determine the base as the remote tip of the current branch:
+
+```sh
+base=$(git rev-parse --symbolic-full-name @{u} 2>/dev/null) \
+  || base=origin/<default-branch>   # fall back if the branch was never pushed
+```
+
+Check for unsigned commits with `git log --format='%G?' <base>..HEAD`. If any line is `N` or `B`, run `git sign-since <base>`. This rebases only the unpushed range and re-signs each commit, so HEAD's SHA changes (but no force-push is required since nothing already on the remote is rewritten).
+
+After signing, refresh anything you cached from Step 2 that referenced commit SHAs (the ranges and diff commands still work because they use refs, not SHAs).
+
+If everything is already signed, say so and continue.
+
+## Step 4 — Title and body
 
 **Mode A:** Read the existing PR's title and body. Compare against the new state (added commits' subjects, the net diff). Flag:
 
@@ -59,7 +76,7 @@ If the existing title/body still fit, say so — don't invent edits. When sugges
 
 Output the proposed title and body verbatim so they can be reused (e.g. by `create-pr`).
 
-## Step 4 — Sub-agent code review
+## Step 5 — Sub-agent code review
 
 Use the Agent tool (general-purpose subagent). The prompt must be self-contained — the sub-agent has none of this conversation's context.
 
@@ -72,7 +89,7 @@ Tell it:
 
 Ask for: correctness issues, likely regressions, anything inconsistent with the PR description, and — for force-pushes — anything that looks like an unintentional change picked up during a rebase. Cap the review at ~300 words.
 
-## Step 5 — Summarize
+## Step 6 — Summarize
 
 In this order:
 
