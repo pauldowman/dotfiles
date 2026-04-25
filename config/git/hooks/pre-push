@@ -3,6 +3,41 @@
 # Redirect output to stderr.
 exec 1>&2
 
+# Block pushing unsigned or bad-signature commits.
+# %G? letters: G/U/X/Y/R/E mean signed (E = signed but not verifiable here);
+# N = no signature, B = bad signature.
+unsigned=()
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [[ "$local_sha" =~ ^0+$ ]] && continue  # branch deletion, nothing to check
+
+  if [[ "$remote_sha" =~ ^0+$ ]]; then
+    commits=$(git log --format='%H %G?' "$local_sha" --not --remotes)
+  else
+    commits=$(git log --format='%H %G?' "${remote_sha}..${local_sha}")
+  fi
+
+  while read -r sha sigstatus; do
+    [[ -z "$sha" ]] && continue
+    if [[ "$sigstatus" == "N" || "$sigstatus" == "B" ]]; then
+      author_email=$(git log -1 --format='%ae' "$sha")
+      if [[ "$author_email" == "paul@pauldowman.com" ]]; then
+        unsigned+=("$sha")
+      fi
+    fi
+  done <<< "$commits"
+done
+
+if (( ${#unsigned[@]} > 0 )); then
+  echo "pre-push: refusing to push ${#unsigned[@]} unsigned commit(s): [$0]"
+  for sha in "${unsigned[@]}"; do
+    git log -1 --format='  %h %s' "$sha"
+  done
+  echo
+  echo "Sign them, e.g.:"
+  echo "  git rebase <base> --exec 'git commit --amend --no-edit -S'"
+  exit 1
+fi
+
 read -p "Press enter to review with Claude, n to skip) [$0] " -n 1 -r </dev/tty
 echo
 if [[ $REPLY =~ ^[Nn]$ ]]; then

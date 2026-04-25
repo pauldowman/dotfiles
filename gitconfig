@@ -71,3 +71,5 @@
 [credential "https://gist.github.com"]
   helper = 
   helper = !gh auth git-credential
+[gpg "ssh"]
+	allowedSignersFile = ~/.config/git/allowed_signers
