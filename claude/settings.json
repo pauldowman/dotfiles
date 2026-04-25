@@ -37,6 +37,16 @@
     "gopls-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true
-  }
+    "pyright-lsp@claude-plugins-official": true,
+    "ethskills@ethskills": true
+  },
+  "extraKnownMarketplaces": {
+    "ethskills": {
+      "source": {
+        "source": "github",
+        "repo": "austintgriffith/ethskills"
+      }
+    }
+  },
+  "model": "opus"
 }
