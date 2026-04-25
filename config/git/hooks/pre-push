@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Redirect output to stderr.
-exec 1>&2
-
-# Block pushing unsigned or bad-signature commits.
+# Refuse to push commits that aren't signed.
 # %G? letters: G/U/X/Y/R/E mean signed (E = signed but not verifiable here);
 # N = no signature, B = bad signature.
+
+exec 1>&2
+
 unsigned=()
 while read -r local_ref local_sha remote_ref remote_sha; do
   [[ "$local_sha" =~ ^0+$ ]] && continue  # branch deletion, nothing to check
@@ -19,44 +19,17 @@ while read -r local_ref local_sha remote_ref remote_sha; do
   while read -r sha sigstatus; do
     [[ -z "$sha" ]] && continue
     if [[ "$sigstatus" == "N" || "$sigstatus" == "B" ]]; then
-      author_email=$(git log -1 --format='%ae' "$sha")
-      if [[ "$author_email" == "paul@pauldowman.com" ]]; then
-        unsigned+=("$sha")
-      fi
+      unsigned+=("$sha")
     fi
   done <<< "$commits"
 done
 
 if (( ${#unsigned[@]} > 0 )); then
-  echo "pre-push: refusing to push ${#unsigned[@]} unsigned commit(s): [$0]"
+  echo "pre-push: refusing to push ${#unsigned[@]} unsigned commit(s):"
   for sha in "${unsigned[@]}"; do
     git log -1 --format='  %h %s' "$sha"
   done
   echo
-  echo "Sign them, e.g.:"
-  echo "  git rebase <base> --exec 'git commit --amend --no-edit -S'"
+  echo "Sign them, e.g.:  git sign-since <base>"
   exit 1
 fi
-
-read -p "Press enter to review with Claude, n to skip) [$0] " -n 1 -r </dev/tty
-echo
-if [[ $REPLY =~ ^[Nn]$ ]]; then
-  exit 0
-fi
-
-REVIEW_BRANCH=$(git rev-parse --abbrev-ref @{upstream} 2>/dev/null)
-
-if [[ -z "$REVIEW_BRANCH" ]]; then
-  REVIEW_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
-  if [[ -z "$REVIEW_BRANCH" ]]; then
-    echo "Could not determine the remote branch to review against. [$0]"
-  fi
-  REVIEW_BRANCH="the default branch"
-fi
-
-echo "Reviewing changes against ${REVIEW_BRANCH}... [$0]"
-
-claude "Review the changes on this branch against ${REVIEW_BRANCH}. Don't re-fetch the remote branch."
-
-read -p "Press ENTER to continue with push... [$0]" </dev/tty
-exit 0
