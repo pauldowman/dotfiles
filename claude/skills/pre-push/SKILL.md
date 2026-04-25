@@ -1,6 +1,6 @@
 ---
 name: pre-push
-description: Pre-push check for the current branch. Detects whether a PR already exists for the branch — if yes, fetches its title/body and suggests edits if out of date; if no, drafts a proposed title/body for a new PR against the repo's default branch. Then runs a sub-agent code review on the appropriate diff (local-vs-remote for an update, base-vs-HEAD for a new PR).
+description: Pre-push check for the current branch. Detects whether a PR already exists for the branch — if yes, fetches its title/body and suggests edits if out of date; if no, drafts a proposed title/body for a new PR against the repo's default branch. Runs tests and linting appropriate for the changes, then runs a sub-agent code review on the appropriate diff (local-vs-remote for an update, base-vs-HEAD for a new PR).
 ---
 
 # pre-push
@@ -76,7 +76,15 @@ If the existing title/body still fit, say so — don't invent edits. When sugges
 
 Output the proposed title and body verbatim so they can be reused (e.g. by `create-pr`).
 
-## Step 5 — Sub-agent code review
+## Step 5 — Run tests and linting
+
+Run tests and linting before the review. Bias toward being thorough — when in doubt, run the broader suite rather than narrowing to changed files. Run independent commands in parallel.
+
+Report each command and its result. If something fails, include the failing output (trimmed) so the user can act. Continue to Step 6 even on failure — the review still adds value — but surface failures prominently in the summary.
+
+If the repo genuinely has no tests or linters configured, state that plainly and move on.
+
+## Step 6 — Sub-agent code review
 
 Use the Agent tool (general-purpose subagent). The prompt must be self-contained — the sub-agent has none of this conversation's context.
 
@@ -89,12 +97,13 @@ Tell it:
 
 Ask for: correctness issues, likely regressions, anything inconsistent with the PR description, and — for force-pushes — anything that looks like an unintentional change picked up during a rebase. Cap the review at ~300 words.
 
-## Step 6 — Summarize
+## Step 7 — Summarize
 
-In this order:
+In this order, blocking issues first:
 
 1. Mode and push type (e.g. "Mode A · fast-forward · 3 commits, 5 files" or "Mode B · new PR vs `main` · 7 commits, 12 files").
-2. Title/body status: OK, suggested edits (Mode A), or proposed title/body (Mode B).
-3. Sub-agent review summary, blocking issues first.
+2. Test and lint results — list each command run with pass/fail. Failures go to the top of the summary.
+3. Title/body status: OK, suggested edits (Mode A), or proposed title/body (Mode B).
+4. Sub-agent review summary.
 
 Don't push. Don't edit or create the PR. The caller (user or `create-pr`) acts on the output.
