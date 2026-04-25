@@ -25,7 +25,7 @@
   co = checkout
   d = diff
   l = log --pretty=format:'%Cred%h%Creset %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-  lg = log --graph --pretty=format:'%Cred%h%Creset %G? %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  ll = log --pretty=format:'%Cred%h%Creset %G? %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --graph --abbrev-commit --date=relative
   cleanup = ! git branch --merged | grep -v '*' | xargs git branch -d
   cleanup-squashed = !git pull --prune && git branch --format=\"%(refname:short) %(upstream:track)\" | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
   push-new = ! git push -u origin `git rev-parse --abbrev-ref HEAD`
