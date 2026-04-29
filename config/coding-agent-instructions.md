@@ -6,8 +6,8 @@ Directory Structure
 
 All plans live under:
 agent-planning/
-  ├── {ID}.md      # One per change / feature / fix
-  └── ...
+├── {ID}.md # One per change / feature / fix
+└── ...
 
 Where {ID} is a short human-readable identifier, starting with an integer that increments, e.g. 02-add-view-page.
 
@@ -47,8 +47,8 @@ Each step needs to be a coherent change that the user will commit to the repo wi
 ## 3. Use the "tidy first" approach
 
 - Separate all changes into two distinct types:
-    1. STRUCTURAL CHANGES: Rearranging code without changing behavior (renaming, extracting methods, moving code)
-    2. BEHAVIORAL CHANGES: Adding or modifying actual functionality
+  1. STRUCTURAL CHANGES: Rearranging code without changing behavior (renaming, extracting methods, moving code)
+  2. BEHAVIORAL CHANGES: Adding or modifying actual functionality
 - Never mix structural and behavioral changes in the same commit
 - Always make structural changes first, as a separate step, if both are needed
 
@@ -71,19 +71,21 @@ After creating the plan, stop for the user to edit and confirm the plan.
 ## 7. Execute one step at a time
 
 When implementing a plan:
+
 - Always refer to the current step from the Steps section.
 - Before executing, read the step and confirm its scope.
 - Only modify code corresponding to that single step.
 - Run tests to ensure that the change hasn't broken anything.
 - Have a sub-agent review the change.
-- If executing multiple steps you can commit the changes to the git repo. But **DO NOT push the branch** and **DO NOT change any branch other than the current branch**.
-    - Commit messages should be terse and one single line
+- If executing multiple steps then commit the changes to the git repo after each step after tests are passing.
+  - Commit messages should be terse and one single line
 - After executing, always update the plan to mark the step as done, skipped, or blocked with a brief note.
 - Do not skip steps or combine multiple steps in a single execution.
 
 ## 8. Review each change
 
 Each change should be reviewed by a sub-agent before committing. The sub-agent should review it for the following:
+
 1. Ensure that it matches what was planned, or if it deviates from the plan that it's an improvement from what was planned.
 2. Review it for correctness.
 3. Ensure it's as clean and simple as possible, while still achieving the goals.
@@ -96,7 +98,7 @@ Each change should be committed after it has been reviewed by the sub-agent. The
 
 ## Prefer code that's self-documenting and easily readable rather than comments.
 
-- Assume the reader can read code, and avoid redundant comments unless the code might be confusing. 
+- Assume the reader can read code, and avoid redundant comments unless the code might be confusing.
 - Avoid unnecessary comments. Comments should explain _why_, but not _what_, unless it's not obvious. Prefer refactoring code into functions with sensible names to make it readable.
 - Always write unit tests for all changes.
 - Never delete or skip failing tests to solve the problem, always try to fix them, and alert the user if there's a good reason why the test is no longer applicable or doesn't add confidence.
