@@ -13,11 +13,7 @@
       "Skill",
       "mcp__claude_ai_Notion__notion-fetch"
     ],
-    "deny": [
-      "Bash(git push *)",
-      "Bash(git checkout *)",
-      "Bash(git switch *)"
-    ],
+    "deny": [],
     "defaultMode": "acceptEdits"
   },
   "hooks": {
