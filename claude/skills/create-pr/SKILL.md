@@ -32,7 +32,9 @@ Open the GitHub PR creation form in the browser, pre-filled with a title and a s
 
    `gh pr create --web` will push the branch if it has no upstream.
 
-3. **Print the PR URL.** `gh pr create --web` outputs a line like `Opening https://github.com/owner/repo/compare/...` — surface that URL in the final message so the user can click it.
+3. **Move the issue to "In Review".** If there's a related GitHub issue, change it's project status to "In Review". It may exist in multiple GitHub projects, if so, change it's status in all of them.
+
+4. **Print the PR URL.** `gh pr create --web` outputs a line like `Opening https://github.com/owner/repo/compare/...` — surface that URL in the final message so the user can click it.
 
 ## Notes
 
