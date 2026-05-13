@@ -16,6 +16,7 @@
     "deny": [],
     "defaultMode": "acceptEdits"
   },
+  "model": "opus[1m]",
   "hooks": {
     "Stop": [
       {
@@ -43,6 +44,5 @@
         "repo": "austintgriffith/ethskills"
       }
     }
-  },
-  "model": "opus"
+  }
 }
