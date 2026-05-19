@@ -35,13 +35,20 @@
     "rust-analyzer-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
-    "ethskills@ethskills": true
+    "ethskills@ethskills": true,
+    "codex@openai-codex": true
   },
   "extraKnownMarketplaces": {
     "ethskills": {
       "source": {
         "source": "github",
         "repo": "austintgriffith/ethskills"
+      }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
       }
     }
   }
