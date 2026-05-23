@@ -63,7 +63,14 @@ set_prompt() {
 $ "
 }
 
-precmd_functions+=(set_prompt)
+set_pane_title() {
+  local branch=$(prompt_git_branch)
+  local title="${PWD:t}"
+  [[ -n $branch ]] && title="$title ($branch)"
+  print -Pn "\e]2;$title\e\\"
+}
+
+precmd_functions+=(set_prompt set_pane_title)
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
