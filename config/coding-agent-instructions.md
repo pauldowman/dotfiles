@@ -103,3 +103,11 @@ Each change should be committed after it has been reviewed by the sub-agent. The
 - Always write unit tests for all changes.
 - Never delete or skip failing tests to solve the problem, always try to fix them, and alert the user if there's a good reason why the test is no longer applicable or doesn't add confidence.
 - Add or update end-to-end tests for main functionality, but typically just one case for a feature. Use unit tests for combinations of different input and edge cases.
+
+# Rules for git
+
+- When committing, keep the commit message succinct, and do not co-sign.
+- When pushing branches use the `push` skill
+- When creating PRs use the `create-pr` skill
+- **Never push unsigned commits**. Commits are not signed by default, but there is a `sign-since` git alias, which the `push` skill describes.
+- If signing fails stop and ask the user to fix it by reconnecting the SSH session. Never work around it.

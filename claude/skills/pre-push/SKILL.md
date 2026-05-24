@@ -55,6 +55,8 @@ base=$(git rev-parse --symbolic-full-name @{u} 2>/dev/null) \
 
 Check for unsigned commits with `git log --format='%G?' <base>..HEAD`. If any line is `N` or `B`, run `git sign-since <base>`. This rebases only the unpushed range and re-signs each commit, so HEAD's SHA changes (but no force-push is required since nothing already on the remote is rewritten).
 
+If signing fails stop and ask the user to fix it by reconnecting the SSH session. Never work around it. **Never push unsigned commits**.
+
 After signing, refresh anything you cached from Step 2 that referenced commit SHAs (the ranges and diff commands still work because they use refs, not SHAs).
 
 If everything is already signed, say so and continue.
