@@ -1,0 +1,2 @@
+ignore-scripts=true # use `npm rebuild` if a legit package doesn't work
+
