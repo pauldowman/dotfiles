@@ -2,10 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(*)",
-      "Read(//*)",
-      "Edit(//*)",
-      "Write(//*)",
-      "Search(//*)",
+      "Read",
+      "Edit",
+      "Write",
+      "Search",
       "NotebookEdit",
       "Mcp:*",
       "WebFetch",
