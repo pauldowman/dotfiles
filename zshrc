@@ -35,7 +35,9 @@ github-url() {
   echo "https://github.com/`git remote -v | grep origin | head -1 | sed 's/^.*github.com[/:]\(.*\)\.git.*/\1/'`/tree/`git branch | grep '^\*' | awk '{print $2}'`"
 }
 
-eval "$(~/code/dev-container/dev --init)"
+if [ -e ~/code/dev-container/dev ]; then
+  eval "$(~/code/dev-container/dev --init)"
+fi
 
 setopt AUTO_CD
 
