@@ -78,7 +78,6 @@ When implementing a plan:
 - Run tests to ensure that the change hasn't broken anything.
 - Have a sub-agent review the change.
 - If executing multiple steps then commit the changes to the git repo after each step after tests are passing.
-  - Commit messages should be terse and one single line
 - After executing, always update the plan to mark the step as done, skipped, or blocked with a brief note.
 - Do not skip steps or combine multiple steps in a single execution.
 
@@ -93,6 +92,8 @@ Each change should be reviewed by a sub-agent before committing. The sub-agent s
 ## 9. Commit the change
 
 Each change should be committed after it has been reviewed by the sub-agent. The user will then review and may request changes, in which case the commit can be amended. Committing after each step allows the changes to be reviewed more easily, with each step corresponding to a commit.
+
+Commit messages should be terse and one single line.
 
 # Coding style
 
