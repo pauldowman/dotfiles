@@ -25,6 +25,8 @@ fi
 
 . ~/.aliases
 
+export PATH="$HOME/.local/bin:$PATH"
+
 bindkey -e  # use emacs key bindings for command prompt (it will default to vim mode if $VISUAL=vim)
 bindkey "^[[3~" delete-char  # fn+delete (forward delete) in tmux
 
@@ -89,7 +91,8 @@ fi
 
 export PATH="$PATH:$HOME/.foundry/bin"
 
-# Claude Code
-export PATH="$HOME/.local/bin:$PATH"
+# opencode
+export PATH=$PATH:/home/paul/.opencode/bin
 
 test -f ~/.zshrc.local && . ~/.zshrc.local || true
+
