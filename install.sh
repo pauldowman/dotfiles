@@ -11,7 +11,7 @@ find "$DOTFILEDIR" \( -type f -o -type l \) -not -name "install.sh" -not -path "
   TARGET_DIR="$HOME/.$(dirname "$REL_PATH")"
   mkdir -p "$TARGET_DIR"
   echo "Installing $REL_PATH => $HOME/.$REL_PATH"
-  ln -sf "$FILE" "$HOME/.$REL_PATH"
+  ln -sfn "$FILE" "$HOME/.$REL_PATH"
 done
 
 if [ -f "$DOTFILEDIR/gnupg/pubkey.asc" ]; then
