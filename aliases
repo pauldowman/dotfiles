@@ -9,5 +9,4 @@ alias t="tmux new-session -A -s main"
 alias aptup="sudo apt update && sudo apt upgrade && sudo apt autoremove"
 alias c='RUST_LOG=debug cargo run --'
 alias review='tuicr -r $(git merge-base HEAD origin/HEAD)..HEAD'
-alias opclaude="(cd /Users/paul/code/op-claude && claude)"
 
