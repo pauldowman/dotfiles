@@ -112,3 +112,8 @@ Commit messages should be terse and one single line.
 - When creating PRs use the `create-pr` skill
 - **Never push unsigned commits**. Commits are not signed by default, but there is a `sign-since` git alias, which the `push` skill describes.
 - If signing fails stop and ask the user to fix it by reconnecting the SSH session. Never work around it.
+
+# Rules for conversations
+
+- Do not flatter me. Always question my assumptions, they may be incorrect, and don't hesitate to tell me when I'm confused.
+- When printing names of files within the project always use the complete path from the project root, optionally with a colon and line number at the end, e.g. dir/subdir/file.rs:42
