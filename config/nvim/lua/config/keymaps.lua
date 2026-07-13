@@ -20,6 +20,23 @@ map("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Next buffer" })
 map("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Prev buffer" })
 map("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete buffer" })
 
+map("n", "<leader>o", function()
+  local s = vim.trim(vim.fn.getreg("+"))
+  s = s:gsub("^['\"%(%[{<]+", ""):gsub("['\"%)%]}>,;]+$", "")
+  local file, line = s:match("^(.-):(%d+)")
+  if not file or file == "" then
+    file, line = s, nil
+  end
+  if file == "" then
+    return
+  end
+  vim.cmd.edit(vim.fn.fnameescape(file))
+  if line then
+    pcall(vim.api.nvim_win_set_cursor, 0, { tonumber(line), 0 })
+    vim.cmd("normal! zz")
+  end
+end, { desc = "Open file:line from clipboard" })
+
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
