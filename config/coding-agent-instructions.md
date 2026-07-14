@@ -72,14 +72,16 @@ After creating the plan, stop for the user to edit and confirm the plan.
 
 When implementing a plan:
 
+- Implement the plan on a new branch.
 - Always refer to the current step from the Steps section.
-- Before executing, read the step and confirm its scope.
+- Before executing each step, read the step and confirm its scope.
 - Only modify code corresponding to that single step.
 - Run tests to ensure that the change hasn't broken anything.
 - Have a sub-agent review the change.
-- If executing multiple steps then commit the changes to the git repo after each step after tests are passing.
+- Commit the changes to the git repo after each step after tests are passing.
 - After executing, always update the plan to mark the step as done, skipped, or blocked with a brief note.
 - Do not skip steps or combine multiple steps in a single execution.
+- Implement all steps in the plan, do not stop until all steps are finished and the plan is complete.
 
 ## 8. Review each change
 
@@ -91,7 +93,7 @@ Each change should be reviewed by a sub-agent before committing. The sub-agent s
 
 ## 9. Commit the change
 
-Each change should be committed after it has been reviewed by the sub-agent. The user will then review and may request changes, in which case the commit can be amended. Committing after each step allows the changes to be reviewed more easily, with each step corresponding to a commit.
+Each change should be committed after it has been reviewed by the sub-agent. Committing after each step allows the changes to be reviewed more easily, with each step corresponding to a commit.
 
 Commit messages should be terse and one single line.
 
