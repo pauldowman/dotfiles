@@ -23,7 +23,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.claude/hooks/notify.sh",
+            "command": "$HOME/.claude/hooks/notify.sh Claude",
             "timeout": 10
           }
         ]
