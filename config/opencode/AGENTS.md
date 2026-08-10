@@ -1,1 +1,1 @@
-../../agents/coding-agent-instructions.md
+../../agents/AGENTS.md
