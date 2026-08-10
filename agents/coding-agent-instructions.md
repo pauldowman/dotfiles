@@ -99,13 +99,16 @@ Commit messages should be terse and one single line.
 
 # Coding style
 
-## Prefer code that's self-documenting and easily readable rather than comments.
+## Prefer code that's self-documenting and easily readable rather than comments
 
 - Assume the reader can read code, and avoid redundant comments unless the code might be confusing.
 - Avoid unnecessary comments. Comments should explain _why_, but not _what_, unless it's not obvious. Prefer refactoring code into functions with sensible names to make it readable.
+
+## Tests
+
 - Always write unit tests for all changes.
 - Never delete or skip failing tests to solve the problem, always try to fix them, and alert the user if there's a good reason why the test is no longer applicable or doesn't add confidence.
-- Add or update end-to-end tests for main functionality, but typically just one case for a feature. Use unit tests for combinations of different input and edge cases.
+- Add or update end-to-end or integration tests for main functionality, but typically just one case for a feature. Use unit tests for combinations of different input and edge cases.
 
 # Rules for git
 
