@@ -18,25 +18,6 @@ require("lazy").setup("plugins", {
   install = { colorscheme = { "tokyonight", "gruvbox", "catppuccin" } },
   ui = {
     border = "rounded",
-    icons = {
-      cmd = ">",
-      config = "*",
-      event = "~",
-      ft = "f",
-      init = "i",
-      import = "<",
-      keys = "k",
-      lazy = "L",
-      loaded = "+",
-      not_loaded = "-",
-      plugin = "p",
-      runtime = "r",
-      require = "R",
-      source = "s",
-      start = "S",
-      task = "T",
-      list = { "-", "+", "*" },
-    },
   },
 })
 

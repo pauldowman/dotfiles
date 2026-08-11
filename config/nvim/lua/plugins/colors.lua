@@ -15,7 +15,6 @@ return {
     opts = {
       options = {
         theme = "auto",
-        icons_enabled = false,
         globalstatus = true,
       },
     },
@@ -26,7 +25,6 @@ return {
     opts = {
       preset = "modern",
       delay = 300,
-      icons = { mappings = false },
       spec = {
         { "<leader>c", group = "Code" },
         { "<leader>d", group = "Debug" },
@@ -61,9 +59,7 @@ return {
   {
     "folke/trouble.nvim",
     cmd = "Trouble",
-    opts = {
-      icons = false,
-    },
+    opts = {},
     keys = {
       { "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics (Trouble)" },
       { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer diagnostics" },
@@ -80,9 +76,5 @@ return {
       render = "compact",
       stages = "fade",
     },
-  },
-  {
-    "nvim-tree/nvim-web-devicons",
-    enabled = false,
   },
 }
