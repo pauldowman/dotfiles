@@ -66,7 +66,7 @@ set_prompt() {
   local prompt_git_status=$(prompt_git_status)
   local prompt_char='$'
   if (( exit_code != 0 )); then
-    prompt_char="%F{red}!\$%f"
+    prompt_char="%F{red}\$%f"
   fi
   PROMPT="%F{magenta}%n%F{white}@%F{yellow}%m: %F{cyan}%~ %F{green}$(prompt_git_branch)%f$(prompt_git_status)$(prompt_nix_shell) %f
 ${prompt_char} "
