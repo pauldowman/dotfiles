@@ -43,6 +43,34 @@ fi
 
 setopt AUTO_CD
 
+zmodload zsh/datetime
+
+human_duration() {
+  local -F elapsed=$1
+  local -i seconds=$elapsed milliseconds=$((elapsed * 1000))
+  if (( elapsed < 1 )); then
+    printf '%dms' $milliseconds
+  elif (( seconds < 60 )); then
+    printf '%.1fs' $elapsed
+  elif (( seconds < 3600 )); then
+    printf '%dm%ds' $((seconds / 60)) $((seconds % 60))
+  elif (( seconds < 86400 )); then
+    printf '%dh%dm' $((seconds / 3600)) $((seconds % 3600 / 60))
+  else
+    printf '%dd%dh' $((seconds / 86400)) $((seconds % 86400 / 3600))
+  fi
+}
+
+start_cmd_timer() {
+  CMD_START_TIME=$EPOCHREALTIME
+}
+
+prompt_cmd_duration() {
+  if [[ -n $CMD_START_TIME ]]; then
+    echo " %F{240}$(human_duration $((EPOCHREALTIME - CMD_START_TIME)))%f"
+  fi
+}
+
 prompt_nix_shell() {
   if [ -n "$IN_NIX_SHELL" ]; then
     echo " %F{blue}(nix)%f"
@@ -64,12 +92,13 @@ set_prompt() {
   local exit_code=$?
   local prompt_git_branch=$(prompt_git_branch)
   local prompt_git_status=$(prompt_git_status)
-  local prompt_char='$'
+  local prompt_char='❯'
   if (( exit_code != 0 )); then
-    prompt_char="%F{red}\$%f"
+    prompt_char="%F{red}❯%f"
   fi
-  PROMPT="%F{magenta}%n%F{white}@%F{yellow}%m: %F{cyan}%~ %F{green}$(prompt_git_branch)%f$(prompt_git_status)$(prompt_nix_shell) %f
+  PROMPT="%F{magenta}%n%F{white}@%F{yellow}%m: %F{cyan}%~ %F{green}$(prompt_git_branch)%f$(prompt_git_status)$(prompt_nix_shell)$(prompt_cmd_duration) %f
 ${prompt_char} "
+  unset CMD_START_TIME
 }
 
 set_pane_title() {
@@ -79,6 +108,7 @@ set_pane_title() {
   print -Pn "\e]2;$title\e\\"
 }
 
+preexec_functions+=(start_cmd_timer)
 precmd_functions+=(set_prompt set_pane_title)
 
 export NVM_DIR="$HOME/.nvm"
