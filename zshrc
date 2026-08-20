@@ -65,10 +65,14 @@ start_cmd_timer() {
   CMD_START_TIME=$EPOCHREALTIME
 }
 
-prompt_cmd_duration() {
+prompt_cmd_status() {
+  local -i exit_code=$1
+  local segment=''
+  (( exit_code != 0 )) && segment=' 💥'
   if [[ -n $CMD_START_TIME ]]; then
-    echo " %F{240}$(human_duration $((EPOCHREALTIME - CMD_START_TIME)))%f"
+    segment+=" %F{240}$(human_duration $((EPOCHREALTIME - CMD_START_TIME)))%f"
   fi
+  echo $segment
 }
 
 prompt_nix_shell() {
@@ -92,12 +96,8 @@ set_prompt() {
   local exit_code=$?
   local prompt_git_branch=$(prompt_git_branch)
   local prompt_git_status=$(prompt_git_status)
-  local prompt_char='❯'
-  if (( exit_code != 0 )); then
-    prompt_char="%F{red}❯%f"
-  fi
-  PROMPT="%F{magenta}%n%F{white}@%F{yellow}%m: %F{cyan}%~ %F{green}$(prompt_git_branch)%f$(prompt_git_status)$(prompt_nix_shell)$(prompt_cmd_duration) %f
-${prompt_char} "
+  PROMPT="%F{magenta}%n%F{white}@%F{yellow}%m: %F{cyan}%~ %F{green}$(prompt_git_branch)%f$(prompt_git_status)$(prompt_nix_shell)$(prompt_cmd_status $exit_code) %f
+❯ "
   unset CMD_START_TIME
 }
 
