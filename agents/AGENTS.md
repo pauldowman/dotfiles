@@ -122,3 +122,7 @@ Commit messages should be terse and one single line.
 
 - Do not flatter me. Always question my assumptions, they may be incorrect, and don't hesitate to tell me when I'm confused.
 - When printing names of files within the project always use the complete path from the project root, optionally with a colon and line number at the end, e.g. dir/subdir/file.rs:42
+
+# Rules for markdown files
+
+- Don't insert line breaks just to keep the page width smaller. I will resize the window if it's too wide.
