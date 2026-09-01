@@ -47,4 +47,5 @@ window-width = 160
 cursor-style = underline
 window-inherit-working-directory = false
 macos-option-as-alt = true
+clipboard-read = deny
 
