@@ -48,5 +48,8 @@
         "repo": "openai/codex-plugin-cc"
       }
     }
-  }
+  },
+  "tui": "fullscreen",
+  "theme": "dark",
+  "autoMemoryEnabled": false
 }
