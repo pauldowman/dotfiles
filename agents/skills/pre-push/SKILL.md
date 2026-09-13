@@ -1,6 +1,6 @@
 ---
 name: pre-push
-description: Pre-push check for the current branch. Detects whether a PR already exists for the branch — if yes, fetches its title/body and suggests edits if out of date; if no, drafts a proposed title/body for a new PR against the repo's default branch. Runs tests and linting appropriate for the changes, then runs a sub-agent code review on the appropriate diff (local-vs-remote for an update, base-vs-HEAD for a new PR).
+description: Pre-push check for the current branch. Detects whether a PR already exists for the branch — if yes, fetches its title/body and suggests edits if out of date; if no, drafts a proposed title/body for a new PR against the repo's default branch. Runs tests and linting appropriate for the changes, then runs another agent code review on the appropriate diff (local-vs-remote for an update, base-vs-HEAD for a new PR).
 ---
 
 # pre-push
@@ -86,18 +86,9 @@ Report each command and its result. If something fails, include the failing outp
 
 If the repo genuinely has no tests or linters configured, state that plainly and move on.
 
-## Step 6 — Sub-agent code review
+## Step 6 — Code review
 
-Use the Agent tool (general-purpose subagent). The prompt must be self-contained — the sub-agent has none of this conversation's context.
-
-Tell it:
-
-- The base branch and the head branch.
-- Mode and push type (Mode A fast-forward / Mode A force-push / Mode B new PR).
-- The current or proposed PR title and body.
-- The exact diff command to run from this repo (Mode A: `git diff <remote>..HEAD`; Mode B: `git diff <base>...HEAD`).
-
-Ask for: correctness issues, likely regressions, anything inconsistent with the PR description, and — for force-pushes — anything that looks like an unintentional change picked up during a rebase. Cap the review at ~300 words.
+Use the `cross-agent-review` skill. If that skill is not available use a subagent.
 
 ## Step 7 — Summarize
 

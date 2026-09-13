@@ -62,7 +62,7 @@ Describe which specific scenarios will be tested as part of the step description
 
 ## 5. Review the plan
 
-After creating a plan, have a sub-agent review the plan, to ensure that it's the best way to achieve the goal and that it follows the principles in this document.
+After creating a plan, have another agent review the plan by using the `cross-agent-review` skill. If it's not available use a sub-agent.
 
 ## 6. Stop after creating the plan
 
@@ -85,7 +85,7 @@ When implementing a plan:
 
 ## 8. Review each change
 
-Each change should be reviewed by a sub-agent before committing. The sub-agent should review it for the following:
+Each change should be reviewed by another agent before committing. The sub-agent should review it for the following:
 
 1. Ensure that it matches what was planned, or if it deviates from the plan that it's an improvement from what was planned.
 2. Review it for correctness.
