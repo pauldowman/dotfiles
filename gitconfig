@@ -34,6 +34,7 @@
   com = ! git checkout $(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
   w = "!f() { repo=$(basename $(git rev-parse --show-toplevel)); pathsafe=$(echo \"$1\" | sed 's|/|--|g'); git worktree add -b \"$1\" \"$HOME/code/${repo}+${pathsafe}\"; }; f"
   sign-since = "!f() { git rebase \"$1\" --exec 'git commit --amend --no-edit --no-verify -S'; }; f"
+  sign-root = "commit --allow-empty -S -m \"chore: empty signed root commit\""
 
 [core]
   excludesfile = ~/.gitignore
