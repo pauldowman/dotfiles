@@ -42,7 +42,7 @@ For example, when adding a new page one step might be to add an empty page and r
 
 Or, a step can be a refactor. Do not combine refactoring with adding functionality, do the refactor first as a separate step.
 
-Each step needs to be a coherent change that the user will commit to the repo without leaving the repo in a broken state.
+Each step needs to be a coherent change to commit to the repo without leaving the repo in a broken state.
 
 ## 3. Use the "tidy first" approach
 
