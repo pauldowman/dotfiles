@@ -50,6 +50,7 @@
     }
   },
   "tui": "fullscreen",
+  "autoMemoryEnabled": false,
   "theme": "dark",
-  "autoMemoryEnabled": false
+  "agentPushNotifEnabled": true
 }
