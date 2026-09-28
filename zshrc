@@ -85,31 +85,72 @@ prompt_git_branch() {
   git symbolic-ref --short HEAD 2> /dev/null
 }
 
-prompt_git_status() {
-  local gitstatus=$(git status --porcelain 2> /dev/null)
-  if [[ -n $gitstatus ]]; then
-    echo " %F{yellow}⚡️%f"
-  fi
+# The dirty indicator is computed in the background. `git status` recurses into
+# nested submodules, which takes tens of seconds in repos like optimism, and
+# computing it inline blocked every prompt for that long.
+typeset -g _prompt_head='' _prompt_tail='' _prompt_branch=''
+typeset -g _prompt_dirty='' _prompt_dirty_fd=''
+
+render_prompt() {
+  PROMPT="${_prompt_head}${_prompt_dirty}${_prompt_tail}"
+}
+
+cancel_git_dirty() {
+  [[ -z $_prompt_dirty_fd ]] && return
+  zle -F $_prompt_dirty_fd 2> /dev/null
+  exec {_prompt_dirty_fd}<&- 2> /dev/null
+  _prompt_dirty_fd=''
+}
+
+on_git_dirty() {
+  local fd=$1 result
+  IFS= read -r result <&$fd
+  zle -F $fd
+  exec {fd}<&-
+  _prompt_dirty_fd=''
+
+  local segment=''
+  [[ $result == dirty ]] && segment=' %F{yellow}⚡️%f'
+  [[ $segment == $_prompt_dirty ]] && return
+  _prompt_dirty=$segment
+  render_prompt
+  zle reset-prompt
+}
+
+start_git_dirty() {
+  cancel_git_dirty
+  exec {_prompt_dirty_fd}< <(
+    [[ -n $(git status --porcelain 2> /dev/null) ]] && print dirty
+  )
+  zle -F $_prompt_dirty_fd on_git_dirty
+}
+
+# Avoid showing the previous directory's state while the new check is in flight.
+clear_git_dirty() {
+  _prompt_dirty=''
 }
 
 set_prompt() {
   local exit_code=$?
-  local prompt_git_branch=$(prompt_git_branch)
-  local prompt_git_status=$(prompt_git_status)
-  PROMPT="%F{magenta}%n%F{white}@%F{yellow}%m: %F{cyan}%~ %F{green}$(prompt_git_branch)%f$(prompt_git_status)$(prompt_nix_shell)$(prompt_cmd_status $exit_code) %f
+  _prompt_branch=$(prompt_git_branch)
+  _prompt_head="%F{magenta}%n%F{white}@%F{yellow}%m: %F{cyan}%~ %F{green}${_prompt_branch}%f"
+  _prompt_tail="$(prompt_nix_shell)$(prompt_cmd_status $exit_code) %f
 ❯ "
   unset CMD_START_TIME
+  render_prompt
+  start_git_dirty
 }
 
 set_pane_title() {
-  local branch=$(prompt_git_branch)
+  local branch=$_prompt_branch
   local title="${PWD:t}"
   [[ -n $branch ]] && title="$title ($branch)"
   print -Pn "\e]2;$title\e\\"
 }
 
-preexec_functions+=(start_cmd_timer)
+preexec_functions+=(start_cmd_timer cancel_git_dirty)
 precmd_functions+=(set_prompt set_pane_title)
+chpwd_functions+=(clear_git_dirty)
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -126,3 +167,6 @@ export PATH=$PATH:/home/paul/.opencode/bin
 
 test -f ~/.zshrc.local && . ~/.zshrc.local || true
 
+
+# opencode
+export PATH=/home/paul/.opencode/bin:$PATH
