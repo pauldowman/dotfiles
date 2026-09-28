@@ -1,6 +1,6 @@
 # Planning
 
-If the user indicates that a plan should be created or followed, then when making code changes all agents must follow the planning-execution model using agent-planning/plan-{ID}.md files.
+If the user indicates that a plan should be created or followed, then when making code changes all agents must follow the planning-execution model using agent-planning/{ID}.md files.
 
 Directory Structure
 
@@ -9,15 +9,19 @@ agent-planning/
 ├── {ID}.md # One per change / feature / fix
 └── ...
 
-Where {ID} is a short human-readable identifier, starting with an integer that increments, e.g. 02-add-view-page.
+Where {ID} is an integer that increments followed by a short human-readable slug, e.g. 02-cool-feature, so the file is agent-planning/02-cool-feature.md. Use a leading zero so that plans sort correctly.
 
 # Workflow Rules
 
 ## 1. Working with a plan
 
-When working with a plan, the agent must create or update a plan-{ID}.md file with the following format:
+When working with a plan, the agent must create or update an agent-planning/{ID}.md file with the following format:
 
 ```
+---
+status: draft
+---
+
 # {ID}
 
 ## Objective
@@ -33,6 +37,15 @@ Break the work down into **discrete, ordered steps**.
 - Optional discussion of assumptions, alternatives, dependencies, or TODOs.
 
 ```
+
+The `status` front matter field must be one of:
+
+- `draft`: the plan is being written or edited and is not yet confirmed by the user.
+- `ready`: the user has confirmed the plan.
+- `implementing`: steps are being executed.
+- `implemented`: all steps are done, skipped, or otherwise resolved.
+
+Keep the status up to date as the plan moves through these stages. Only the user can move a plan from `draft` to `ready`, either by editing it or by explicitly confirming the plan.
 
 ## 2. Each step is a "vertical slice" of functionality or a refactor
 
@@ -73,6 +86,7 @@ After creating the plan, stop for the user to edit and confirm the plan.
 When implementing a plan:
 
 - Implement the plan on a new branch.
+- Only implement a plan with status `ready` (or `implementing` when resuming). Set the status to `implementing` before starting the first step.
 - Always refer to the current step from the Steps section.
 - Before executing each step, read the step and confirm its scope.
 - Only modify code corresponding to that single step.
@@ -82,6 +96,7 @@ When implementing a plan:
 - After executing, always update the plan to mark the step as done, skipped, or blocked with a brief note.
 - Do not skip steps or combine multiple steps in a single execution.
 - Implement all steps in the plan, do not stop until all steps are finished and the plan is complete.
+- When all steps are finished, set the status to `implemented`.
 
 ## 8. Review each change
 
@@ -109,6 +124,10 @@ Commit messages should be terse and one single line.
 - Always write unit tests for all changes.
 - Never delete or skip failing tests to solve the problem, always try to fix them, and alert the user if there's a good reason why the test is no longer applicable or doesn't add confidence.
 - Add or update end-to-end or integration tests for main functionality, but typically just one case for a feature. Use unit tests for combinations of different input and edge cases.
+
+## Review the whole feature
+
+After the plan is implemented the full implementation must be reviewed with the /cross-agent-review skill. Even though each commit has already been reviewed, the full branch must be reviewed as a whole.
 
 # Rules for git
 
