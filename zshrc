@@ -22,6 +22,7 @@ if command -v nvim &> /dev/null; then
 else
   export VISUAL="vim"
 fi
+export EDITOR=$VISUAL
 
 . ~/.aliases
 
