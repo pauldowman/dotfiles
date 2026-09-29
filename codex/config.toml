@@ -1,10 +1,8 @@
 model = "gpt-5.6-sol"
 notify = ["~/.codex/hooks/notify.sh", "Codex"]
-trust_level = "trusted"
 personality = "pragmatic"
 sandbox_mode = "danger-full-access"
 approval_policy = "never"
-network_access = "enabled"
 model_reasoning_effort = "xhigh"
 
 [notice]
