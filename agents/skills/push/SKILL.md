@@ -1,18 +1,18 @@
 ---
 name: push
-description: Push the current branch after running the `pre-push` skill. Pushes automatically if pre-push checks all pass; aborts if they don't.
+description: Push the current branch after running the `pre-push` skill. Pushes automatically if pre-push succeeds; aborts if it doesn't.
 ---
 
 # push
 
-Run `pre-push`, then push if its checks all passed.
+Run `pre-push`, then push if it succeeded.
 
 ## Steps
 
-1. **Run the `pre-push` skill first.** Follow its instructions in this same conversation. It will sign unsigned commits, run tests/lint, draft or check the PR title/body, and run a sub-agent code review.
+1. **Run the `pre-push` skill first.** Follow its instructions in this same conversation. It will sign unsigned commits and draft or check the PR title/body.
 
 2. **Decide whether to push.**
-   - If `pre-push` reported failing tests, lint errors, or blocking review issues: **do not push.** Report the failures to the user and stop.
+   - If `pre-push` stopped (e.g. signing failed): **do not push.** Report the problem to the user and stop.
    - Otherwise: proceed.
 
 3. **Determine the push command.**

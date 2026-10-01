@@ -1,11 +1,11 @@
 ---
 name: pre-push
-description: Pre-push check for the current branch. Detects whether a PR already exists for the branch — if yes, fetches its title/body and suggests edits if out of date; if no, drafts a proposed title/body for a new PR against the repo's default branch. Runs tests and linting appropriate for the changes, then runs another agent code review on the appropriate diff (local-vs-remote for an update, base-vs-HEAD for a new PR).
+description: Pre-push check for the current branch. Detects whether a PR already exists for the branch — if yes, fetches its title/body and suggests edits if out of date; if no, drafts a proposed title/body for a new PR against the repo's default branch. Also signs any unsigned unpushed commits.
 ---
 
 # pre-push
 
-Run before `git push` (or before creating a new PR) to make sure the PR description matches the work and the changes get a fresh review.
+Run before `git push` (or before creating a new PR) to make sure the commits are signed and the PR description matches the work.
 
 Never run `git push`, `gh pr edit`, or `gh pr create` from this skill — only suggest.
 
@@ -30,7 +30,7 @@ If the working tree has uncommitted changes, mention it before going further —
 
 - `git log --oneline <remote>..HEAD` — commits that would be added.
 - `git log --oneline HEAD..<remote>` — commits that would be dropped (non-empty ⇒ force-push).
-- Diff to review: `git diff <remote>..HEAD` (net effective change vs what's published).
+- Diff: `git diff <remote>..HEAD` (net effective change vs what's published).
 - Push type:
   - _Fast-forward_: nothing dropped, only new commits on top.
   - _Force-push / rebase / amend_: commits dropped, or histories diverged.
@@ -39,7 +39,7 @@ If the working tree has uncommitted changes, mention it before going further —
 **Mode B (new PR):** with `<base> = origin/<default-branch>`:
 
 - `git log --oneline <base>..HEAD` — every commit that will be in the PR.
-- Diff to review: `git diff <base>...HEAD` (three-dot — changes on HEAD's side since the merge base).
+- Diff: `git diff <base>...HEAD` (three-dot — changes on HEAD's side since the merge base).
 - If the diff is empty, stop — there's nothing to PR.
 
 ## Step 3 — Sign unsigned commits in the unpushed range
@@ -78,25 +78,10 @@ If the existing title/body still fit, say so — don't invent edits. When sugges
 
 Output the proposed title and body verbatim so they can be reused (e.g. by `create-pr`).
 
-## Step 5 — Run tests and linting
-
-Run tests and linting before the review. Bias toward being thorough — when in doubt, run the broader suite rather than narrowing to changed files. Run independent commands in parallel.
-
-Report each command and its result. If something fails, include the failing output (trimmed) so the user can act. Continue to Step 6 even on failure — the review still adds value — but surface failures prominently in the summary.
-
-If the repo genuinely has no tests or linters configured, state that plainly and move on.
-
-## Step 6 — Code review
-
-Use the `cross-agent-review` skill. If that skill is not available use a subagent.
-
-## Step 7 — Summarize
-
-In this order, blocking issues first:
+## Step 5 — Summarize
 
 1. Mode and push type (e.g. "Mode A · fast-forward · 3 commits, 5 files" or "Mode B · new PR vs `main` · 7 commits, 12 files").
-2. Test and lint results — list each command run with pass/fail. Failures go to the top of the summary.
+2. Signing status.
 3. Title/body status: OK, suggested edits (Mode A), or proposed title/body (Mode B).
-4. Sub-agent review summary.
 
 Don't push. Don't edit or create the PR. The caller (user or `create-pr`) acts on the output.
