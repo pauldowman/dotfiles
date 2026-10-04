@@ -69,7 +69,7 @@ start_cmd_timer() {
 prompt_cmd_status() {
   local -i exit_code=$1
   local segment=''
-  (( exit_code != 0 )) && segment=' 💥'
+  (( exit_code != 0 )) && segment=" 💥[$exit_code]"
   if [[ -n $CMD_START_TIME ]]; then
     segment+=" %F{240}$(human_duration $((EPOCHREALTIME - CMD_START_TIME)))%f"
   fi
