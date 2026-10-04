@@ -3,7 +3,7 @@ notify = ["~/.codex/hooks/notify.sh", "Codex"]
 personality = "pragmatic"
 sandbox_mode = "danger-full-access"
 approval_policy = "never"
-model_reasoning_effort = "xhigh"
+model_reasoning_effort = "high"
 
 [notice]
 hide_rate_limit_model_nudge = true
