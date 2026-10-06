@@ -73,6 +73,8 @@ ALWAYS INCLUDE TESTS WITHIN EACH STEP. There should not be a separate step for t
 
 Describe which specific scenarios will be tested as part of the step description.
 
+Or, if tests aren't warranted (for example there's no need to test something that is just declarative or config) then say so in the plan.
+
 ## 5. Review the plan
 
 After creating a plan, have another agent review the plan by using the `cross-agent-review` skill. If it's not available use a sub-agent.
