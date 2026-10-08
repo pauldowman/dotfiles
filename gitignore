@@ -5,3 +5,5 @@ agent-planning
 agent-planning/
 project-state.txt
 project-state.md
+
+**/.claude/settings.local.json
