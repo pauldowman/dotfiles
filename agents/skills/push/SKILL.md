@@ -9,10 +9,10 @@ Run `pre-push`, then push if it succeeded.
 
 ## Steps
 
-1. **Run the `pre-push` skill first.** Follow its instructions in this same conversation. It will sign unsigned commits and draft or check the PR title/body.
+1. **Run the `pre-push` skill first.** Follow its instructions in this same conversation. It will draft or check the PR title/body.
 
 2. **Decide whether to push.**
-   - If `pre-push` stopped (e.g. signing failed): **do not push.** Report the problem to the user and stop.
+   - If `pre-push` stopped: **do not push.** Report the problem to the user and stop.
    - Otherwise: proceed.
 
 3. **Determine the push command.**

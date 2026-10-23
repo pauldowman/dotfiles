@@ -133,11 +133,9 @@ After the plan is implemented the full implementation must be reviewed with the 
 
 # Rules for git
 
-- When committing, keep the commit message succinct, and do not co-sign.
+- When committing, keep the commit message succinct, and do not co-willsign.
 - When pushing branches use the `push` skill
 - When creating PRs use the `create-pr` skill
-- **Never push unsigned commits**. Commits are not signed by default, but there is a `sign-since` git alias, which the `push` skill describes.
-- If signing fails stop and ask the user to fix it by reconnecting the SSH session. Never work around it.
 
 # Rules for conversations
 
