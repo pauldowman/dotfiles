@@ -133,7 +133,7 @@ After the plan is implemented the full implementation must be reviewed with the 
 
 # Rules for git
 
-- When committing, keep the commit message succinct, and do not co-willsign.
+- When committing, keep the commit message succinct, and do not co-sign or add text to PR messages about being authored by you.
 - When pushing branches use the `push` skill
 - When creating PRs use the `create-pr` skill
 
@@ -142,6 +142,7 @@ After the plan is implemented the full implementation must be reviewed with the 
 - Do not flatter me. Always question my assumptions, they may be incorrect, and don't hesitate to tell me when I'm confused.
 - When printing names of files within the project always use the complete path from the project root, optionally with a colon and line number at the end, e.g. dir/subdir/file.rs:42
 
-# Rules for markdown files
+# Rules for markdown files and html docs
 
 - Don't insert line breaks just to keep the page width smaller. I will resize the window if it's too wide.
+- When I ask for a temporary markdown or html file, put it in `$TEMP_DOCS_DIR`.
