@@ -17,36 +17,42 @@ return {
     dependencies = { "williamboman/mason.nvim" },
     opts = function()
       local tools = {
-        "bash-language-server",
-        "black",
-        "codelldb",
-        "debugpy",
-        "eslint_d",
-        "isort",
-        "json-lsp",
-        "lua-language-server",
-        "marksman",
-        "prettier",
-        "pyright",
-        "ruff",
-        "shellcheck",
-        "shfmt",
-        "stylua",
-        "taplo",
-        "typescript-language-server",
-        "yaml-language-server",
+        { "bash-language-server", version = "5.8.1" },
+        { "black", version = "26.10.1" },
+        { "codelldb", version = "v1.12.3" },
+        { "debugpy", version = "1.8.22" },
+        { "eslint_d", version = "15.0.3" },
+        { "isort", version = "9.0.2" },
+        { "json-lsp", version = "4.10.0" },
+        { "lua-language-server", version = "3.19.2" },
+        { "marksman", version = "2026-02-08" },
+        { "prettier", version = "3.9.10" },
+        { "pyright", version = "1.1.414" },
+        { "ruff", version = "0.17.2" },
+        { "shellcheck", version = "v0.11.0" },
+        { "shfmt", version = "v3.14.1" },
+        { "stylua", version = "v2.6.0" },
+        { "taplo", version = "0.10.0" },
+        { "typescript-language-server", version = "6.0.2" },
+        { "yaml-language-server", version = "2.0.0" },
       }
       if vim.fn.executable("go") == 1 then
-        vim.list_extend(tools, { "delve", "goimports", "gofumpt", "golangci-lint", "gopls" })
+        vim.list_extend(tools, {
+          { "delve", version = "v1.27.2" },
+          { "goimports", version = "v0.52.0" },
+          { "gofumpt", version = "v0.12.0" },
+          { "golangci-lint", version = "v2.15.0" },
+          { "gopls", version = "v0.23.0" },
+        })
       end
       if vim.fn.executable("rustc") == 1 then
-        vim.list_extend(tools, { "rust-analyzer" })
+        vim.list_extend(tools, { { "rust-analyzer", version = "2026-10-19" } })
       end
       return {
         ensure_installed = tools,
         auto_update = false,
-        run_on_start = true,
-        start_delay = 3000,
+        -- Require :MasonToolsInstall so tool changes stay explicit, including on new machines.
+        run_on_start = false,
       }
     end,
   },
