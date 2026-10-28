@@ -14,14 +14,9 @@
       "mcp__claude_ai_Notion__notion-fetch"
     ],
     "deny": [],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "auto"
   },
   "model": "opus[1m]",
-  "modelSettings": {
-    "claude-opus-5-5": {
-      "effortLevel": "high"
-    }
-  },
   "hooks": {
     "Stop": [
       {
