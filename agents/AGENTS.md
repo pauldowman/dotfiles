@@ -126,6 +126,7 @@ Commit messages should be terse and one single line.
 - Always write unit tests for all changes.
 - Never delete or skip failing tests to solve the problem, always try to fix them, and alert the user if there's a good reason why the test is no longer applicable or doesn't add confidence.
 - Add or update end-to-end or integration tests for main functionality, but typically just one case for a feature. Use unit tests for combinations of different input and edge cases.
+- Write tests as if the code had always been built this way. When a change removes or replaces behaviour, don't add tests asserting the old behaviour is gone (an old field is absent, an old argument is refused, an old name no longer appears); update the existing tests to describe the new behaviour. A test belongs only if it checks something the current design requires, such as a bug's regression test or a rule the current interface enforces. Comments and docs follow the same rule: describe the end state, not the change ("no longer", "now", "instead of"), except in ADRs and changelogs, which record history.
 
 ## Review the whole feature
 
