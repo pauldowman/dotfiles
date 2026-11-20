@@ -76,3 +76,5 @@
 	allowedSignersFile = ~/.config/git/allowed_signers
 [url "https://github.com/"]
 	insteadOf = git@github.com:
+[worktree]
+	useRelativePaths = true
