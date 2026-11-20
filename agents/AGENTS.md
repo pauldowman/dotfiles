@@ -146,4 +146,4 @@ After the plan is implemented the full implementation must be reviewed with the 
 # Rules for markdown files and html docs
 
 - Don't insert line breaks just to keep the page width smaller. I will resize the window if it's too wide.
-- When I ask for a temporary markdown or html file, put it in `$TEMP_DOCS_DIR`.
+- When I ask for a temporary markdown or html file, put it in `$TEMP_DOCS_DIR`. Do not use cloud artifacts unless specifically asked to.
