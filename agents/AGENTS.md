@@ -77,7 +77,7 @@ Or, if tests aren't warranted (for example there's no need to test something tha
 
 ## 5. Review the plan
 
-After creating a plan, have another agent review the plan by using the `cross-agent-review` skill. If it's not available use a sub-agent.
+After creating a plan, have a sub-agent review the plan. The sub-agent should be the most capable model available.
 
 ## 6. Stop after creating the plan
 
@@ -93,7 +93,7 @@ When implementing a plan:
 - Before executing each step, read the step and confirm its scope.
 - Only modify code corresponding to that single step.
 - Run tests to ensure that the change hasn't broken anything.
-- Have a sub-agent review the change.
+- Have a sub-agent review the change. The sub-agent should be the most capable model available.
 - Commit the changes to the git repo after each step after tests are passing.
 - After executing, always update the plan to mark the step as done, skipped, or blocked with a brief note.
 - Do not skip steps or combine multiple steps in a single execution.
@@ -130,7 +130,7 @@ Commit messages should be terse and one single line.
 
 ## Review the whole feature
 
-After the plan is implemented the full implementation must be reviewed with the /cross-agent-review skill. Even though each commit has already been reviewed, the full branch must be reviewed as a whole.
+After the plan is implemented the full implementation must be reviewed by a sub-agent. The sub-agent should use the most capable model available. Even though each commit has already been reviewed, the full branch must be reviewed as a whole.
 
 # Rules for git
 
