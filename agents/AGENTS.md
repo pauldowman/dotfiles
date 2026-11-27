@@ -7,6 +7,12 @@ These rules apply to build code, not to prototypes.
 - Assume the reader can read code, and avoid redundant comments unless the code might be confusing.
 - Avoid unnecessary comments. Comments should explain _why_, but not _what_, unless it's not obvious. Prefer refactoring code into functions with sensible names to make it readable.
 
+## Shape of changes
+
+- Build in vertical slices: each change works end to end with its tests and leaves the app working. For a new page, that might be the empty page and route, then a component with hard-coded data, then the real API call; not one layer at a time.
+- Make the change easy, then make the easy change. Before each behavioural change, ask what shape of the existing code would make it simple, and restructure toward that shape in its own commit first, rather than bolting the change onto code shaped for something else (an extra flag, another special case, a copied branch). This includes code written in earlier slices of the same work. Restructure only toward the change at hand, not for anticipated future ones.
+- A structural commit changes no behaviour, so the existing tests pass with only renames and moves. Don't mix unrelated refactors into a behavioural commit; do them separately or leave them.
+
 ## Tests
 
 - Always write unit tests for all changes.
